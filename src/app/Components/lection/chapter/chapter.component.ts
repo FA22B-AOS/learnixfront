@@ -18,16 +18,20 @@ import {ChapterContentComponent} from "./chapter-content/chapter-content.compone
 export class ChapterComponent {
 
   @Input() chapter: Chapter | undefined;
-  protected content$: Observable<ChapterContent[]>;
+  protected content: ChapterContent[] | undefined;
 
   constructor(private http: HttpService) {
-    this.content$ = of([]);
+
   }
 
   ngOnInit():void{
-    if(this.chapter?.chapterId != undefined)
-      this.content$ = this.http.GetChapterContent(this.chapter.chapterId);
+    this.fetchData();
   }
 
-
+  private fetchData():void{
+    if(this.chapter?.chapterId != undefined)
+      this.http.GetChapterContent(this.chapter.chapterId).then((result) => {
+        this.content = result;
+      });
+  }
 }

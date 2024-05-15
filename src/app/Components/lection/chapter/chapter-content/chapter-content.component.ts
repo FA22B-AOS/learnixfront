@@ -9,6 +9,5 @@ import {ChapterContent} from "../../../../Models/ChapterContent";
   styleUrl: './chapter-content.component.css'
 })
 export class ChapterContentComponent {
-  @Input() content: ChapterContent | undefined;
-
+  @Input() cont: ChapterContent | undefined;
 }

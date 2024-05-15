@@ -1,0 +1,19 @@
+<div *ngIf="croppedImage != ''" class="cropped-image-container">
+  <img [src]="croppedImage" alt="Cropped Image">
+</div>
+
+<p>{{username}}</p>
+<p *ngFor="let r of roles">{{r}}</p>
+
+
+<input type="file" (change)="fileChangeEvent($event)" />
+<image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="true"
+  [aspectRatio]="1 / 1"
+  [resizeToWidth]="400"
+  [resizeToHeight]="400"
+  format="png"
+  (imageCropped)="onCrop($event)">
+</image-cropper>
+<button (click)="applyCroppedImage()">Übernehmen</button>

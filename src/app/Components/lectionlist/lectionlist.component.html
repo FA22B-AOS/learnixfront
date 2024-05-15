@@ -1,0 +1,15 @@
+<div class="row">
+  <h1>Suche</h1>
+</div>
+
+<div class="row">
+  <ng-container *ngFor="let lection of lections$ | async">
+    <div class="col-xs-4 col-lg-4">
+      <app-lektioncard [lection]="lection" [add]="!privateList" (remove)="removeLectionFromList(lection)" ></app-lektioncard>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="noLections">
+    <p>Noch keine Lektionen ausgesucht?</p>
+  </ng-container>
+</div>
+

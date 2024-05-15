@@ -71,6 +71,10 @@ export class SidebarComponent {
 
   }
 
+  login() {
+    this.keycloak.login();
+  }
+
   private fetchData():void{
     this.lections$ = this.httpService.GetLections();
   }

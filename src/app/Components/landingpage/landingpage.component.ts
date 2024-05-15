@@ -15,14 +15,5 @@ import {RouterLink} from "@angular/router";
   styleUrl: './landingpage.component.css'
 })
 export class LandingpageComponent {
-  protected lections$: Observable<Lection[]>;
 
-  constructor(private httpService: HttpService) {
-    this.lections$ = of([]);
-    this.fetchData();
-  }
-
-  private fetchData():void{
-    this.lections$ = this.httpService.GetLections();
-  }
 }

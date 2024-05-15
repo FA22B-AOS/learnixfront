@@ -18,4 +18,5 @@
 body {
   font-family: "Poppins","Stick No Bills", sans-serif;
   background-color: var(--main-background-color);
+  color: var(--main-font-color);
 }

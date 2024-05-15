@@ -19,7 +19,7 @@ import {ChapterComponent} from "./chapter/chapter.component";
 export class LectionComponent {
 
   protected lection: Lection | undefined;
-  protected selectedChapter: Chapter | undefined;
+  protected selectedChapterId: number | undefined;
   protected chapters$: Observable<Chapter[]>;
 
   constructor(private route: ActivatedRoute,
@@ -39,8 +39,8 @@ export class LectionComponent {
     });
   }
 
-  protected selectChapter(chapter: Chapter){
-    this.selectedChapter = chapter;
+  protected selectChapter(chapterId:number){
+    this.selectedChapterId = chapterId;
   }
 
 }

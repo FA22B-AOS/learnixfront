@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li *ngFor="let chapter of chapters$ | async" class="nav-item">
-        <a class="nav-link" (click)="this.selectChapter(chapter)">{{chapter.chapterName}}</a>
+        <a class="nav-link" (click)="this.selectChapter(chapter.chapterId)">{{chapter.chapterName}}</a>
       </li>
     </ul>
   </div>
@@ -14,4 +14,4 @@
 
 <h1>{{this.lection?.title}}</h1>
 
-<ng-container><app-chapter [chapter]="selectedChapter"></app-chapter></ng-container>
+<app-chapter [ngClass]="{'invisible': selectedChapterId !== chapter.chapterId}" *ngFor="let chapter of chapters$ | async" [chapter]="chapter"></app-chapter>

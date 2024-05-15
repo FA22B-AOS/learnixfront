@@ -85,7 +85,8 @@
   justify-content: space-between;
 }
 
-.sidebar.close .nav-container .nav-links li .icon-link {
+.sidebar.close .nav-container .nav-links li .icon-link,
+.sidebar.close .nav-container .profile-details .icon-link {
   display: block;
 }
 
@@ -118,7 +119,8 @@
   transform: rotate(-180deg);
 }
 
-.sidebar.close .nav-container .nav-links i.arrow {
+.sidebar.close .nav-container .nav-links i.arrow,
+.sidebar.close .nav-container .profile-details i.arrow {
   display: none;
 }
 
@@ -174,8 +176,7 @@
   cursor: pointer;
 }
 
-.sidebar.close .nav-container .nav-links li .sub-menu,
-.sidebar.close .nav-container .profile-details .sub-menu{
+.sidebar.close .nav-container .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
   top: -10px;
@@ -188,9 +189,28 @@
   transition: 0s;
 }
 
-.sidebar.close .nav-container .nav-links li:hover .sub-menu,
-.sidebar.close .nav-container .profile-details:hover .sub-menu{
+.sidebar.close .nav-container .profile-details .sub-menu {
+  position: absolute;
+  left: 100%;
+  bottom: -10px;
+  margin-top: 0;
+  padding: 10px 20px;
+  border-radius: 0 6px 6px 0;
+  opacity: 0;
+  display: block;
+  pointer-events: none;
+  transition: 0s;
+}
+
+.sidebar.close .nav-container .nav-links li:hover .sub-menu {
   top: 0;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+}
+
+.sidebar.close .nav-container .profile-details:hover .sub-menu {
+  bottom: 0;
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
@@ -239,10 +259,12 @@
 
 .sidebar .nav-container .profile-details.login a{
   width: 100%;
+  cursor: pointer;
 }
 
 .sidebar.close .nav-container .profile-details {
   background: none;
+  position: relative;
 }
 
 .sidebar .nav-container .profile-details .profile-content {
