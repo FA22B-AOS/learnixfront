@@ -1,0 +1,45 @@
+.home-section{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 10px;
+  }
+
+.header{
+  flex: 1;
+}
+
+.header-content{
+  margin-top: 10px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-family: Inter,sans-serif;
+  font-weight: bold;
+  margin: 0;
+  position: fixed;
+}
+
+.header .username{
+  font-size: 24px;
+  font-family: Inter,sans-serif;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.g\.activities{
+  font-size: 20px;
+  font-family: Inter,sans-serif;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 40px;
+}
+
+.l\.activities{
+  font-size: 20px;
+  font-family: Inter,sans-serif;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 30px;
+}
