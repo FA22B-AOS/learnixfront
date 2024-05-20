@@ -1,0 +1,12 @@
+<div class="quiz-container">
+  <h2>{{ currentQuestion?.question }}</h2>
+  <div class="options">
+    <!--<button *ngFor="let option of currentQuestion?.options; let i = index" (click)="selectOption(i)">
+      {{ option }}
+    </button>-->
+  </div>
+  <div *ngIf="showResult">
+    <p>{{ resultMessage }}</p>
+    <button (click)="nextQuestion()">Next Question</button>
+  </div>
+</div>
