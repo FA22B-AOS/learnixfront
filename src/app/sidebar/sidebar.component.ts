@@ -38,7 +38,6 @@ export class SidebarComponent {
 
         this.profileName = typedValue.username;
         this.profileJob = typedValue.attributes.job;
-        console.log(typedValue);
       });
     }
 
