@@ -31,6 +31,12 @@ export class SidebarComponent {
   ];
   @Input() title?: string;
 
+  activeChildTitle: string = '';
+
+  setActiveChild(title: string) {
+    this.activeChildTitle = title;
+  }
+
   constructor(protected keycloak: KeycloakService, protected httpService: HttpService) {
     if (keycloak.isLoggedIn()) {
       keycloak.loadUserProfile().then(async (value) => {
