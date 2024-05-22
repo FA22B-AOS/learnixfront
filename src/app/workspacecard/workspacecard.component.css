@@ -61,7 +61,7 @@
 .cardcontainer .card .content a:hover{
   color: #CCC;
   background: #AD310B;
-
+  cursor: pointer;
   -webkit-transition: background 100ms linear, color 100ms linear;
   -ms-transition: background 100ms linear, color 100ms linear;
   transition: background 100ms linear, color 100ms linear;
