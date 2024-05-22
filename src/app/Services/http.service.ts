@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {map, Observable} from "rxjs";
 import {Lection} from "../Models/Lection";
 import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Workspace} from "../Models/Workspace";
 
 @Injectable({
   providedIn: 'root'
@@ -226,6 +226,22 @@ export class HttpService {
           }
         });
     });
+  }
+
+  public getAllWorkspaces(): Observable<Workspace[]> {
+    return this.http.get<Workspace[]>('http://localhost:8081/workspaces', {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    }).pipe(
+      map(workspaces => workspaces.map(workspace => {
+        return new Workspace(
+          workspace.workspaceId,
+          workspace.title,
+          workspace.ownerId,
+          workspace.memberIds || []
+        );
+      }))
+    );
   }
 
 

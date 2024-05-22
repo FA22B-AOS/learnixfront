@@ -1,4 +1,9 @@
-<div class="workspaceListWrapper">
-  <h1>Workspaces</h1>
-  <app-workspacecard></app-workspacecard>
+<div class="row">
+  <ng-container *ngFor="let workspace of workspaces$ | async">
+    <div class="col-xs-4 col-lg-4">
+      <app-workspacecard [workspace]="workspace"></app-workspacecard>
+    </div>
+  </ng-container>
 </div>
+
+

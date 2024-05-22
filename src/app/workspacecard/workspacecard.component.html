@@ -1,1 +1,13 @@
-<p>workspacecard works!</p>
+<div class="cardcontainer">
+  <div class="card">
+    <div class="content">
+      <h2>{{workspace?.title}}</h2>
+      <p> Mitglieder: {{workspace?.memberCount}}</p>
+
+      <a (click)="requestAccess()" class="neon-button">
+        Beitreten
+      </a>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,85 @@
+.cardcontainer{
+
+}
+
+.cardcontainer .card{
+  position: relative;
+  width: 280px;
+  height: 400px;
+  margin: 30px;
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+  border-radius: 15px;
+  background: rgba(255,255,255,0.1);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-left: 1px solid rgba(255,255,255,0.5);
+  backdrop-filter: blur(5px);
+}
+
+.cardcontainer .card .content{
+  padding: 20px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.cardcontainer .card .content h3{
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  font-size: 7em;
+  pointer-events: none;
+}
+
+.cardcontainer .card .content h3{
+  font-size: 1.8em;
+  color: var(--main-font-color);
+  z-index: 1;
+}
+
+.cardcontainer .card .content p{
+  font-size: 1em;
+  color: var(--main-font-color);
+  font-weight: 300;
+}
+
+.cardcontainer .card .content a{
+  position: absolute;
+  display: flex;
+  padding: 8px 20px;
+  background: #fff;
+  color: var(--main-font-color);
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 500;
+  bottom: 10%;
+  left: 25%;
+}
+
+.cardcontainer .card .content a:hover{
+  color: #CCC;
+  background: #AD310B;
+
+  -webkit-transition: background 100ms linear, color 100ms linear;
+  -ms-transition: background 100ms linear, color 100ms linear;
+  transition: background 100ms linear, color 100ms linear;
+}
+
+.cardEdit{
+  position: absolute;
+  top: 3%;
+  left: 90%;
+}
+
+.cardDelete{
+  position: absolute;
+  top: 3%;
+  left: 5%;
+}
+
+.cardEdit:hover, .cardDelete:hover{
+  cursor: pointer;
+}
+
