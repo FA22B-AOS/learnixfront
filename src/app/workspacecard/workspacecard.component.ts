@@ -18,13 +18,13 @@ import {RouterLink} from "@angular/router";
   styleUrl: './workspacecard.component.css'
 })
 export class WorkspacecardComponent {
-  @Input() workspace: Workspace | undefined;
+  @Input() workspace!: Workspace;
 
   constructor(private httpService: HttpService, private keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {
-    console.log('Workspace:', this.workspace);
+    console.log(this.workspace.memberCount);
   }
 
   protected requestAccess() {

@@ -244,6 +244,12 @@ export class HttpService {
     );
   }
 
+  public getMemberWorkspaces(userId: string | undefined): Observable<Workspace[]> {
+    return this.http.get<Workspace[]>(`http://localhost:8081/workspaces/member?userId=${userId}`, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
+  }
+
 
 
 }

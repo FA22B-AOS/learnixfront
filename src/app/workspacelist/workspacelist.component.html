@@ -1,9 +1,28 @@
-<div class="row">
-  <ng-container *ngFor="let workspace of workspaces$ | async">
-    <div class="col-xs-4 col-lg-4">
-      <app-workspacecard [workspace]="workspace"></app-workspacecard>
-    </div>
-  </ng-container>
+<div class="container">
+  <div class="row">
+    My workspaces
+  </div>
+  <div class="row">
+    <ng-container *ngFor="let workspace of myWorkspaces$ | async">
+      <div class="col-xs-4 col-lg-4">
+        <app-workspacecard [workspace]="workspace"></app-workspacecard>
+      </div>
+    </ng-container>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    All workspaces
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let workspace of nonMemberWorkspaces$ | async">
+      <div class="col-xs-4 col-lg-4">
+        <app-workspacecard [workspace]="workspace"></app-workspacecard>
+      </div>
+    </ng-container>
+  </div>
 </div>
 
 
