@@ -2,10 +2,10 @@ import {Component, ElementRef, Input, isDevMode, QueryList, ViewChild, ViewChild
 import { CommonModule } from '@angular/common';
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
-import {ExtendedKeycloakProfile} from "../extended-keycloak-profile";
+import {ExtendedKeycloakProfile} from "../../extended-keycloak-profile";
 import {Observable, of} from "rxjs";
-import {Lection} from "../Models/Lection";
-import {HttpService} from "../Services/http.service";
+import {Lection} from "../../Models/Lection";
+import {HttpService} from "../../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
 
 @Component({

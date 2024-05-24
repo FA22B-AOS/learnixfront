@@ -1,5 +1,9 @@
 <main>
   <section>
-    <app-sidebar [title]="title"></app-sidebar>
+    @if (keycloakService.isLoggedIn()) {
+      <app-sidebar [title]="title"></app-sidebar>
+    } @else {
+      <app-landingpage></app-landingpage>
+    }
   </section>
 </main>
