@@ -64,7 +64,6 @@ export class WorkspacelistComponent {
 
       this.workspaces$ = this.httpService.getAllWorkspaces().pipe(
         map(workspaces => {
-          console.log('All Workspaces:', workspaces);
           return workspaces.map(workspace => new Workspace(
             workspace.workspaceId,
             workspace.title,

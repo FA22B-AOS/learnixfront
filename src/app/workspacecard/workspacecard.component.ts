@@ -24,7 +24,6 @@ export class WorkspacecardComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.workspace.memberCount);
   }
 
   protected requestAccess() {
