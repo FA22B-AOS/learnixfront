@@ -36,17 +36,14 @@ export class WorkspacelistComponent {
     this.myWorkspaces$ = of([]);
     this.nonMemberWorkspaces$ = of ([]);
     this.privateList = this.router.url === '/myworkspaces';
+    this.UserGUID = this.keycloak.getKeycloakInstance().subject;
     this.fetchData();
   }
 
   private fetchData(): void {
-    // this.workspaces$ = this.httpService.getAllWorkspaces();
-    // this.workspaces$.subscribe(workspaces => {
-    //   console.log('Fetched workspaces:', workspaces);
-    // });
-    // this.myWorkspaces$ = this.httpService.getMemberWorkspaces(this.UserGUID);
 
     if (this.UserGUID) {
+
       this.myWorkspaces$ = this.httpService.getMemberWorkspaces().pipe(
         map(workspaces => {
           console.log('Member Workspaces:', workspaces);
