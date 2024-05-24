@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {HttpService} from "../../Services/http.service";
 import {CommonModule} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
@@ -17,6 +17,7 @@ import {GalleryComponent} from "./Content/gallery/gallery.component";
 import {HotelsComponent} from "./Content/hotels/hotels.component";
 import {VenueComponent} from "./Content/venue/venue.component";
 import {ScheduleComponent} from "./Content/schedule/schedule.component";
+import {ScrollService} from "../../scroll.service";
 
 @Component({
   selector: 'app-landingpage',
@@ -28,4 +29,20 @@ import {ScheduleComponent} from "./Content/schedule/schedule.component";
 })
 export class LandingpageComponent {
 
+  constructor(private scrollService: ScrollService) {
+  }
+
+  ngOnInit() {
+    this.scrollService.headerScrolled();
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.scrollService.headerScrolled();
+    this.scrollService.toggleBackToTop();
+  }
+
+  scrollTo(el: string) {
+    this.scrollService.scrollToElement(el);
+  }
 }

@@ -25,10 +25,12 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/vendor/swiper/swiper-bundle.min.css",
+              "node_modules/aos/dist/aos.css"
             ],
             "scripts": [
-              "src/assets/js/main.js"
+              "src/assets/vendor/swiper/swiper-bundle.min.js"
             ]
           },
           "configurations": {

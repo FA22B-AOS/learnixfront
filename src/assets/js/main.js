@@ -1,11 +1,3 @@
-/**
-* Template Name: TheEvent
-* Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function() {
   "use strict";
 
@@ -36,7 +28,7 @@
   }
 
   /**
-   * Easy on scroll event listener 
+   * Easy on scroll event listener
    */
   const onscroll = (el, listener) => {
     el.addEventListener('scroll', listener)
@@ -205,7 +197,7 @@
   });
 
   /**
-   * Initiate gallery lightbox 
+   * Initiate gallery lightbox
    */
   const galleryLightbox = GLightbox({
     selector: '.gallery-lightbox'
