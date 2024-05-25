@@ -2,11 +2,11 @@
 # Subscribe Section
 --------------------------------------------------------------*/
 #subscribe {
+  position: relative;
   padding: 60px;
   background: url(/assets/img/subscribe-bg.jpg) center center no-repeat;
   background-size: cover;
   overflow: hidden;
-  position: relative;
 }
 
 #subscribe:before {
@@ -28,6 +28,11 @@
 #subscribe .section-header h2,
 #subscribe p {
   color: #fff;
+}
+
+#subscribe form {
+  position: relative;
+  z-index: 1;
 }
 
 #subscribe input {

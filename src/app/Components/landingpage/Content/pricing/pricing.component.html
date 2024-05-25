@@ -1,0 +1,117 @@
+<!-- ======= Buy Ticket Section ======= -->
+<section id="pricing" class="section-with-bg">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Pricing</h2>
+      <p>Discover Affordable Learning: Explore Learnix's Pricing Options.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Standard Access</h5>
+            <h6 class="card-price text-center">$0 / Free</h6>
+            <hr>
+            <ul class="list-unstyled">
+              <li><span><i class="bi bi-check me-1"></i></span>Public Lections</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Public Quizzes</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Progress Tracking</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Rewards / Badges</li>
+              <li class="text-muted"><span><i class="bi bi-x me-1"></i></span>Workspaces</li>
+              <li class="text-muted"><span><i class="bi bi-x me-1"></i></span>Create Quizzes and Lections</li>
+              <li class="text-muted"><span><i class="bi bi-x me-1"></i></span>AI-Learning</li>
+            </ul>
+            <hr>
+            <div class="text-center">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="standard-access">Join Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Pro Access</h5>
+            <h6 class="card-price text-center">$9.99</h6>
+            <hr>
+            <ul class="list-unstyled">
+              <li><span><i class="bi bi-check me-1"></i></span>Public Lections</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Public Quizzes</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Progress Tracking</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Rewards / Badges</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Workspaces</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Create Quizzes and Lections</li>
+              <li class="text-muted"><span><i class="bi bi-x me-1"></i></span>AI-Learning</li>
+
+            </ul>
+            <hr>
+            <div class="text-center">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="pro-access">Join Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Pro Tier -->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Premium Access</h5>
+            <h6 class="card-price text-center">$19.99</h6>
+            <hr>
+            <ul class="list-unstyled">
+              <li><span><i class="bi bi-check me-1"></i></span>Public Lections</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Public Quizzes</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Progress Tracking</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Rewards / Badges</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Workspaces</li>
+              <li><span><i class="bi bi-check me-1"></i></span>Create Quizzes and Lections</li>
+              <li><span><i class="bi bi-check me-1"></i></span>AI-Learning</li>
+            </ul>
+            <hr>
+            <div class="text-center">
+              <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#buy-ticket-modal" data-ticket-type="premium-access">Join Now</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal Order Form -->
+  <div id="buy-ticket-modal" class="modal fade">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Buy Tickets</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="#">
+            <div class="form-group">
+              <input type="text" class="form-control" name="your-name" placeholder="Your Name">
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="your-email" placeholder="Your Email">
+            </div>
+            <div class="form-group mt-3">
+              <select id="ticket-type" name="ticket-type" class="form-select">
+                <option value="">-- Select Your Ticket Type --</option>
+                <option value="standard-access">Standard Access</option>
+                <option value="pro-access">Pro Access</option>
+                <option value="premium-access">Premium Access</option>
+              </select>
+            </div>
+            <div class="text-center mt-3">
+              <button type="submit" class="btn">Buy Now</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</section><!-- End Buy Ticket Section -->

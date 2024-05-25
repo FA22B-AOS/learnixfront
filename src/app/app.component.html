@@ -1,9 +1,6 @@
 <main>
   <section>
-    @if (keycloakService.isLoggedIn()) {
-      <app-sidebar [title]="title"></app-sidebar>
-    } @else {
-      <app-landingpage></app-landingpage>
-    }
+      <router-outlet></router-outlet>
+      <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   </section>
 </main>

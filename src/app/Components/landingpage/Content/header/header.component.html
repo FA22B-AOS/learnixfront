@@ -3,13 +3,18 @@
 
     <div id="logo" class="me-auto">
       <!-- Uncomment below if you prefer to use a text logo -->
-      <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
-      <a href="" class="scrollto"><img src="assets/img/logo.png" alt="" title=""></a>
+       <h1><a routerLink=""><span>Learnix</span></a></h1>
+<!--      <a href="" class="scrollto"><img src="assets/img/logo.png" alt="" title=""></a>-->
     </div>
 
     <app-navigation></app-navigation>
 
-    <a class="buy-tickets scrollto" href="#buy-tickets">Buy Tickets</a>
+    @if (!keycloak.isLoggedIn()) {
+      <a class="login-btn scrollto" (click)="login()">Login</a>
+    } @else {
+      <a class="login-btn scrollto" routerLink="learning">Open platform</a>
+    }
+
 
   </div>
 </header><!-- End Header -->
