@@ -1,9 +1,9 @@
 import {Component, ElementRef, Input, isDevMode, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
 import {ExtendedKeycloakProfile} from "../../extended-keycloak-profile";
-import {Observable, of} from "rxjs";
+import {filter, Observable, of} from "rxjs";
 import {Lection} from "../../Models/Lection";
 import {HttpService} from "../../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
@@ -31,7 +31,7 @@ export class SidebarComponent {
   ];
   @Input() title?: string;
 
-  constructor(protected keycloak: KeycloakService, protected httpService: HttpService) {
+  constructor(protected keycloak: KeycloakService, protected httpService: HttpService, private router: Router) {
     if (keycloak.isLoggedIn()) {
       keycloak.loadUserProfile().then(async (value) => {
         const typedValue = value as ExtendedKeycloakProfile;
@@ -44,6 +44,15 @@ export class SidebarComponent {
 
     this.lections$ = of([]);
     this.fetchData();
+  }
+
+  ngOnInit() {
+      this.router.events.pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        console.log('Navigation to:', event.url);
+      });
+
   }
 
   ngAfterViewInit() {
