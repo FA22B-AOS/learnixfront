@@ -308,7 +308,7 @@
 .home-section {
   position: relative;
   background: var(--main-background-color);
-  height: 100%;
+  min-height: 100vh;
   left: 260px;
   width: calc(100% - 260px);
   transition: all 0.5s ease;
@@ -319,24 +319,30 @@
   width: calc(100% - 78px);
 }
 
-.home-section .home-content {
+.home-section .home-menu {
   height: 60px;
   display: flex;
   align-items: center;
+  position: fixed;
 }
 
-.home-section .home-content .bx-menu,
-.home-section .home-content .text {
+.home-section .home-menu .bx-menu,
+.home-section .home-menu .text {
   color: var(--main-sidebar-background-color);
   font-size: 35px;
 }
 
-.home-section .home-content .bx-menu {
+.home-section .home-menu .bx-menu {
   margin: 0 15px;
   cursor: pointer;
 }
 
-.home-section .home-content .text {
+.home-section .home-menu .text {
   font-size: 26px;
   font-weight: 600;
+}
+
+.home-section .home-content {
+  position: relative;
+  top: 60px;
 }

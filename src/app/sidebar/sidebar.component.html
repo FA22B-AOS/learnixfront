@@ -134,11 +134,14 @@
   </div>
 </div>
 <section class="home-section">
-  <div class="home-content">
+  <div class="home-menu">
     <i class="bx bx-menu" (click)="toggleSidebar()"></i>
     <span class="text">{{activeChildTitle}}</span>
   </div>
+  <div class="home-content">
     <router-outlet></router-outlet>
+  </div>
+
 </section>
 
 
