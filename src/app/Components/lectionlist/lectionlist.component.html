@@ -1,33 +1,36 @@
-<div class="row">
-  <h1>Suche</h1>
-</div>
-
-<ng-container *ngIf="privateList">
+<div class="container">
   <div class="row">
-    <div class="col-xs-2 col-lg-2">
-      <button type="button" class="btn btn-primary" (click)="openNewLectionDialog()">Neue Lektion</button>
-    </div>
+    <h1>Suche</h1>
   </div>
-</ng-container>
 
-<div class="row">
-  <ng-container *ngFor="let lection of lections$ | async">
-    <div class="col-xs-4 col-lg-4">
-      <app-lektioncard [lection]="lection" [add]="!privateList" (remove)="removeLectionFromList(lection)"></app-lektioncard>
+  <ng-container *ngIf="privateList">
+    <div class="row">
+      <div class="col-xs-2 col-lg-2">
+        <button type="button" class="btn btn-primary" (click)="openNewLectionDialog()">Neue Lektion</button>
+      </div>
     </div>
   </ng-container>
-  <ng-container *ngIf="noLections">
-    <p>Noch keine Lektionen ausgesucht?</p>
-  </ng-container>
-</div>
 
-<!-- Dialog für neue Lektion -->
-<div *ngIf="isDialogOpen" class="modal-backdrop">
-  <div class="modal-content">
-    <h3>Neue Lektion hinzufügen</h3>
-    <input type="text" [(ngModel)]="newLectionName" placeholder="Name der Lektion" />
-    <textarea [(ngModel)]="newLectionDescription" rows="3" placeholder="Beschreibung der Lektion"></textarea>
-    <button (click)="addNewLection()">Hinzufügen</button>
-    <button (click)="closeDialog()">Abbrechen</button>
+  <div class="row">
+    <ng-container *ngFor="let lection of lections$ | async">
+      <div class="col-xs-4 col-lg-3">
+        <app-lektioncard [lection]="lection" [add]="!privateList" (remove)="removeLectionFromList(lection)"></app-lektioncard>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="noLections">
+      <p>Noch keine Lektionen ausgesucht?</p>
+    </ng-container>
+  </div>
+
+  <!-- Dialog für neue Lektion -->
+  <div *ngIf="isDialogOpen" class="modal-backdrop">
+    <div class="modal-content">
+      <h3>Neue Lektion hinzufügen</h3>
+      <input type="text" [(ngModel)]="newLectionName" placeholder="Name der Lektion" />
+      <textarea [(ngModel)]="newLectionDescription" rows="3" placeholder="Beschreibung der Lektion"></textarea>
+      <button (click)="addNewLection()">Hinzufügen</button>
+      <button (click)="closeDialog()">Abbrechen</button>
+    </div>
   </div>
 </div>
+
