@@ -344,10 +344,10 @@
 
 .home-section .home-content {
   position: fixed;
-  top: 60px; /* Adjust as needed */
-  left: 260px; /* Same as the width of the sidebar */
-  width: calc(100% - 260px); /* Adjust for sidebar width */
-  bottom: 0; /* Ensures content stretches to the bottom of the viewport */
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+  top: 60px;
+  left: 260px;
+  width: calc(100% - 260px);
+  bottom: 0;
+  overflow-y: auto;
 }
 
