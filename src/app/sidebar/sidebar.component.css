@@ -308,7 +308,7 @@
 .home-section {
   position: relative;
   background: var(--main-background-color);
-  min-height: 100vh;
+  min-height: calc(100vh + 60px);
   left: 260px;
   width: calc(100% - 260px);
   transition: all 0.5s ease;
@@ -343,6 +343,11 @@
 }
 
 .home-section .home-content {
-  position: relative;
-  top: 60px;
+  position: fixed;
+  top: 60px; /* Adjust as needed */
+  left: 260px; /* Same as the width of the sidebar */
+  width: calc(100% - 260px); /* Adjust for sidebar width */
+  bottom: 0; /* Ensures content stretches to the bottom of the viewport */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
 }
+
