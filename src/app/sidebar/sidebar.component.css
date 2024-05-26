@@ -349,5 +349,11 @@
   width: calc(100% - 260px);
   bottom: 0;
   overflow-y: auto;
+  transition: all 0.5s ease;
+}
+
+.sidebar.close ~ .home-section .home-content {
+  left: 78px;
+  width: calc(100% - 78px);
 }
 
