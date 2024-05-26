@@ -240,7 +240,9 @@ export class HttpService {
           workspace.title,
           workspace.ownerId,
           workspace.memberIds || [],
-          workspace.publicWorkspace
+          workspace.publicWorkspace,
+          workspace.inviteOnly
+
         );
       }))
     );
@@ -254,6 +256,13 @@ export class HttpService {
 
   setPublicWorkspace(workspaceId: number, publicWorkspace: boolean): Observable<any> {
     const url = `${this.apiUrl}/workspaces/${workspaceId}/public?publicWorkspace=${publicWorkspace}`;
+    return this.http.put(url, {}, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
+  }
+
+  setInviteOnly(workspaceId: number, inviteOnly: boolean): Observable<any> {
+    const url = `${this.apiUrl}/workspaces/${workspaceId}/invite-only?inviteOnly=${inviteOnly}`;
     return this.http.put(url, {}, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });

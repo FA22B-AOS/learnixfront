@@ -1,32 +1,28 @@
 import {Component, Input} from '@angular/core';
 import {Workspace} from "../Models/Workspace";
 import {HttpService} from "../Services/http.service";
-import {KeycloakService} from "keycloak-angular";
-import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
+import {NgForOf} from "@angular/common";
 
 @Component({
-  selector: 'app-workspace-view',
+  selector: 'app-workspace-header',
   standalone: true,
   imports: [
-    WorkspaceHeaderComponent
+    NgForOf
   ],
-  templateUrl: './workspace-view.component.html',
-  styleUrl: './workspace-view.component.css'
+  templateUrl: './workspace-header.component.html',
+  styleUrl: './workspace-header.component.css'
 })
-export class WorkspaceViewComponent {
-  @Input() workspace: Workspace | undefined;
-  protected owner: boolean = false;
+export class WorkspaceHeaderComponent {
+  @Input() members: string[] = [];
+  @Input() moderators: string[] = [];
+  @Input() owner: string = '';
+  @Input() workspace:  Workspace | undefined;
+  inviteOnly: boolean = false;
+  publicWorkspace: boolean = false;
 
-  constructor(private httpService: HttpService, private keycloakService: KeycloakService) {
-    this.checkOwnership();
+  constructor(protected httpService: HttpService) {
   }
 
-  private checkOwnership() {
-    const userId = this.keycloakService.getKeycloakInstance().subject;
-    if (this.workspace && userId) {
-      this.owner = this.workspace.ownerId === userId;
-    }
-  }
 
   togglePublicWorkspace() {
     if (this.workspace && this.owner) {
@@ -45,4 +41,5 @@ export class WorkspaceViewComponent {
         });
     }
   }
+
 }

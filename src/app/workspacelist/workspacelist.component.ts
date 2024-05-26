@@ -51,7 +51,9 @@ export class WorkspacelistComponent {
             workspace.workspaceId,
             workspace.title,
             workspace.ownerId,
-            workspace.memberIds
+            workspace.memberIds,
+            workspace.publicWorkspace,
+            workspace.inviteOnly
           ));
         }),
         catchError(() => of([]))  // Fallback to empty array on error
@@ -63,7 +65,9 @@ export class WorkspacelistComponent {
             workspace.workspaceId,
             workspace.title,
             workspace.ownerId,
-            workspace.memberIds
+            workspace.memberIds,
+            workspace.publicWorkspace,
+            workspace.inviteOnly
           ));
         }),
         catchError(() => of([]))  // Fallback to empty array on error

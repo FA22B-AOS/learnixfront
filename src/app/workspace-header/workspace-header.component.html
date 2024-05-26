@@ -1,0 +1,84 @@
+<!-- workspace-header.component.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Suchleiste -->
+    <form class="d-flex me-auto">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+
+    <!-- Button für das Modal -->
+    <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#memberModal">
+      Members
+    </button>
+
+    <!-- Dropdown-Menü für die Einstellungen -->
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="settingsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        Settings
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+        <li class="dropdown-item">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="inviteOnly" [checked]="inviteOnly" (change)="toggleInviteOnly()">
+            <label class="form-check-label" for="inviteOnly">
+              Invite Only
+            </label>
+          </div>
+        </li>
+        <li class="dropdown-item">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="publicWorkspace" [checked]="publicWorkspace" (change)="togglePublicWorkspace()">
+            <label class="form-check-label" for="publicWorkspace">
+              Public Workspace
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Modal -->
+<div id="memberModal" class="modal fade" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="memberModalLabel">Workspace Members</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Tabbed Navigation -->
+        <ul class="nav nav-tabs" id="memberTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="members-tab" data-bs-toggle="tab" data-bs-target="#members" type="button" role="tab" aria-controls="members" aria-selected="true">Members</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="moderators-tab" data-bs-toggle="tab" data-bs-target="#moderators" type="button" role="tab" aria-controls="moderators" aria-selected="false">Moderators & Owner</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="memberTabContent">
+          <!-- Members Tab -->
+          <div class="tab-pane fade show active" id="members" role="tabpanel" aria-labelledby="members-tab">
+            <ul class="list-group mt-3">
+              <li *ngFor="let member of members" class="list-group-item">{{ member }}</li>
+            </ul>
+          </div>
+          <!-- Moderators & Owner Tab -->
+          <div class="tab-pane fade" id="moderators" role="tabpanel" aria-labelledby="moderators-tab">
+            <div class="mt-3">
+              <h6>Owner:</h6>
+              <p>{{ owner }}</p>
+              <h6>Moderators:</h6>
+              <ul class="list-group">
+                <li *ngFor="let moderator of moderators" class="list-group-item">{{ moderator }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

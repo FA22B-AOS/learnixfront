@@ -4,7 +4,8 @@ export class Workspace {
     public title: string,
     public ownerId: string,
     public memberIds: string[],
-    public publicWorkspace: boolean
+    public publicWorkspace: boolean,
+    public inviteOnly: boolean
   ) {}
 
   get memberCount(): number {
