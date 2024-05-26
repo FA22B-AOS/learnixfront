@@ -1,4 +1,4 @@
-<div class="sidebar" #sidebar>
+<div class="sidebar"  [ngClass]="{ 'sidebar-closed': isClosed }"  #sidebar>
   <div class="nav-container">
     <div class="logo-details">
       <a routerLink="">
@@ -133,15 +133,15 @@
     }
   </div>
 </div>
-<section class="home-section">
-  <div class="home-menu">
-    <i class="bx bx-menu" (click)="toggleSidebar()"></i>
-    <span class="text">{{activeChildTitle}}</span>
-  </div>
-  <div class="home-content">
-    <router-outlet></router-outlet>
-  </div>
+<!--<section class="home-section">-->
+<!--  <div class="home-menu">-->
+<!--    <i class="bx bx-menu" (click)="toggleSidebar()"></i>-->
+<!--    <span class="text">{{activeChildTitle}}</span>-->
+<!--  </div>-->
+<!--  <div class="home-content">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
 
-</section>
+<!--</section>-->
 
 

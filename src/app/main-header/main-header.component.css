@@ -2,13 +2,12 @@
 .home-section {
   position: relative;
   background: var(--main-background-color);
-  min-height: calc(100vh + 60px);
   left: 260px;
   width: calc(100% - 260px);
   transition: all 0.5s ease;
 }
 
-.sidebar.close ~ .home-section {
+.home-section.sidebar-closed {
   left: 78px;
   width: calc(100% - 78px);
 }
@@ -34,13 +33,4 @@
 .home-section .home-menu .text {
   font-size: 26px;
   font-weight: 600;
-}
-
-.home-section .home-content {
-  position: fixed;
-  top: 60px;
-  left: 260px;
-  width: calc(100% - 260px);
-  bottom: 0;
-  overflow-y: auto;
 }

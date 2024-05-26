@@ -11,7 +11,7 @@
   transition: all 0.5s ease;
 }
 
-.sidebar.close {
+.sidebar.sidebar-closed {
   width: 78px;
 }
 
@@ -49,10 +49,9 @@
   color: var(--main-sidebar-font-color);
   font-weight: 600;
   transition: 0.3s ease;
-
 }
 
-.sidebar.close .logo-details .logo_name {
+.sidebar.sidebar-closed .logo-details .logo_name {
   transition-delay: 0s;
   opacity: 0;
   pointer-events: none;
@@ -64,7 +63,7 @@
   overflow: auto;
 }
 
-.sidebar.close .nav-container .nav-links{
+.sidebar.sidebar-closed .nav-container .nav-links{
   overflow: visible;
 }
 
@@ -79,8 +78,8 @@
   justify-content: space-between;
 }
 
-.sidebar.close .nav-container .nav-links li .icon-link,
-.sidebar.close .nav-container .profile-details .icon-link {
+.sidebar.sidebar-closed .nav-container .nav-links li .icon-link,
+.sidebar.sidebar-closed .nav-container .profile-details .icon-link {
   display: block;
 }
 
@@ -113,8 +112,8 @@
   transform: rotate(-180deg);
 }
 
-.sidebar.close .nav-container .nav-links i.arrow,
-.sidebar.close .nav-container .profile-details i.arrow {
+.sidebar.sidebar-closed .nav-container .nav-links i.arrow,
+.sidebar.sidebar-closed .nav-container .profile-details i.arrow {
   display: none;
 }
 
@@ -133,8 +132,8 @@
   transition: all 0.3s ease;
 }
 
-.sidebar.close .nav-container .nav-links li a .link_name,
-.sidebar.close .nav-container .profile-details a .name-job {
+.sidebar.sidebar-closed .nav-container .nav-links li a .link_name,
+.sidebar.sidebar-closed .nav-container .profile-details a .name-job {
   opacity: 0;
   pointer-events: none;
 }
@@ -170,7 +169,7 @@
   cursor: pointer;
 }
 
-.sidebar.close .nav-container .nav-links li .sub-menu {
+.sidebar.sidebar-closed .nav-container .nav-links li .sub-menu {
   position: absolute;
   left: 100%;
   top: -10px;
@@ -183,7 +182,7 @@
   transition: 0s;
 }
 
-.sidebar.close .nav-container .profile-details .sub-menu {
+.sidebar.sidebar-closed .nav-container .profile-details .sub-menu {
   position: absolute;
   left: 100%;
   bottom: -10px;
@@ -196,14 +195,14 @@
   transition: 0s;
 }
 
-.sidebar.close .nav-container .nav-links li:hover .sub-menu {
+.sidebar.sidebar-closed .nav-container .nav-links li:hover .sub-menu {
   top: 0;
   opacity: 1;
   pointer-events: auto;
   transition: all 0.4s ease;
 }
 
-.sidebar.close .nav-container .profile-details:hover .sub-menu {
+.sidebar.sidebar-closed .nav-container .profile-details:hover .sub-menu {
   bottom: 0;
   opacity: 1;
   pointer-events: auto;
@@ -215,13 +214,13 @@
   display: none;
 }
 
-.sidebar.close .nav-container .nav-links li .sub-menu .link_name,
-.sidebar.close .nav-container .profile-details .sub-menu .link_name{
+.sidebar.sidebar-closed .nav-container .nav-links li .sub-menu .link_name,
+.sidebar.sidebar-closed .nav-container .profile-details .sub-menu .link_name{
   display: none;
 }
 
-.sidebar.close .nav-container .nav-links li .sub-menu .link_name,
-.sidebar.close .nav-container .profile-details .sub-menu .link_name{
+.sidebar.sidebar-closed .nav-container .nav-links li .sub-menu .link_name,
+.sidebar.sidebar-closed .nav-container .profile-details .sub-menu .link_name{
   font-size: 18px;
   opacity: 1;
   display: block;
@@ -256,7 +255,7 @@
   cursor: pointer;
 }
 
-.sidebar.close .nav-container .profile-details {
+.sidebar.sidebar-closed .nav-container .profile-details {
   background: none;
   position: relative;
 }
@@ -276,7 +275,7 @@
   transition: all 0.5s ease;
 }
 
-.sidebar.close .nav-container .profile-details img {
+.sidebar.sidebar-closed .nav-container .profile-details img {
   padding: 10px;
 }
 
@@ -290,70 +289,18 @@
   transition: all 0.5s ease;
 }
 
-.sidebar.close .nav-container .profile-details i,
-.sidebar.close .nav-container .profile-details .profile_name,
-.sidebar.close .nav-container .profile-details .job {
+.sidebar.sidebar-closed .nav-container .profile-details i,
+.sidebar.sidebar-closed .nav-container .profile-details .profile_name,
+.sidebar.sidebar-closed .nav-container .profile-details .job {
   opacity: 0;
 }
 
-.sidebar.close .nav-container .profile-details.login i {
+.sidebar.sidebar-closed .nav-container .profile-details.login i {
   display: block;
   opacity: 1;
 }
 
 .sidebar .nav-container .profile-details .job {
   font-size: 12px;
-}
-
-.home-section {
-  position: relative;
-  background: var(--main-background-color);
-  min-height: calc(100vh + 60px);
-  left: 260px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
-}
-
-.sidebar.close ~ .home-section {
-  left: 78px;
-  width: calc(100% - 78px);
-}
-
-.home-section .home-menu {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  position: fixed;
-}
-
-.home-section .home-menu .bx-menu,
-.home-section .home-menu .text {
-  color: var(--main-sidebar-background-color);
-  font-size: 35px;
-}
-
-.home-section .home-menu .bx-menu {
-  margin: 0 15px;
-  cursor: pointer;
-}
-
-.home-section .home-menu .text {
-  font-size: 26px;
-  font-weight: 600;
-}
-
-.home-section .home-content {
-  position: fixed;
-  top: 60px;
-  left: 260px;
-  width: calc(100% - 260px);
-  bottom: 0;
-  overflow-y: auto;
-  transition: all 0.5s ease;
-}
-
-.sidebar.close ~ .home-section .home-content {
-  left: 78px;
-  width: calc(100% - 78px);
 }
 

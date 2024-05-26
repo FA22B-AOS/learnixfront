@@ -20,26 +20,26 @@ export class WorkspaceHeaderComponent {
   inviteOnly: boolean = false;
   publicWorkspace: boolean = false;
 
-  constructor(protected httpService: HttpService) {
-  }
+  // constructor(private httpService: HttpService) {
+  // }
 
 
   togglePublicWorkspace() {
-    if (this.workspace && this.owner) {
-      this.httpService.setPublicWorkspace(this.workspace.workspaceId, !this.workspace.publicWorkspace)
-        .subscribe(() => {
-          this.workspace!.publicWorkspace = !this.workspace!.publicWorkspace;
-        });
-    }
+    // if (this.workspace && this.owner) {
+    //   this.httpService.setPublicWorkspace(this.workspace.workspaceId, !this.workspace.publicWorkspace)
+    //     .subscribe(() => {
+    //       this.workspace!.publicWorkspace = !this.workspace!.publicWorkspace;
+    //     });
+    // }
   }
 
-  toggleInviteOnly() {
-    if (this.workspace && this.owner) {
-      this.httpService.setInviteOnly(this.workspace.workspaceId, !this.workspace.inviteOnly)
-        .subscribe(() => {
-          this.workspace!.inviteOnly = !this.workspace!.inviteOnly;
-        });
-    }
+   toggleInviteOnly() {
+  //   if (this.workspace && this.owner) {
+  //     this.httpService.setInviteOnly(this.workspace.workspaceId, !this.workspace.inviteOnly)
+  //       .subscribe(() => {
+  //         this.workspace!.inviteOnly = !this.workspace!.inviteOnly;
+  //       });
+  //   }
   }
 
 }
