@@ -8,7 +8,6 @@ import {LectionlistComponent} from "./Components/lectionlist/lectionlist.compone
 import {UserprofileComponent} from "./Components/userprofile/userprofile.component";
 import {WorkspacelistComponent} from "./workspacelist/workspacelist.component";
 import {WorkspaceViewComponent} from "./workspace-view/workspace-view.component";
-import {WorkspaceHeaderComponent} from "./workspace-header/workspace-header.component";
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent},
@@ -19,6 +18,6 @@ export const routes: Routes = [
   { path: 'lection/:lectionId', component: LectionComponent, canActivate: [authGuard]},
   { path: 'lection/:lectionId/:chapterId', component: ChapterComponent, canActivate: [authGuard]},
   // { path: 'workspaces', component: WorkspacelistComponent},
-  {path: 'workspaces', component: WorkspaceViewComponent},
+  { path: 'workspaces', component: WorkspaceViewComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
