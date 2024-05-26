@@ -11,11 +11,12 @@ import {Workspace} from "../Models/Workspace";
   providedIn: 'root'
 })
 export class HttpService {
+  private apiUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient) { }
 
   public GetLections():Observable<Lection[]>{
-    return this.http.get<Lection[]>('http://localhost:8081/lections',{
+    return this.http.get<Lection[]>(`${this.apiUrl}/lections`,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
@@ -23,7 +24,7 @@ export class HttpService {
 
   public GetLectionProgress(UserGUID: string, lectionId: number):Promise<LectionProgress>{
     return new Promise((resolve,reject) => {
-      this.http.get<LectionProgress>('http://localhost:8081/progress/' + UserGUID + '/' + lectionId).subscribe({
+      this.http.get<LectionProgress>(`${this.apiUrl}/progress/` + UserGUID + '/' + lectionId).subscribe({
         next: (response) => {
           resolve(response);
         },
@@ -36,7 +37,7 @@ export class HttpService {
   }
   public GetAllUserprogress(UserGUID: string):Promise<LectionProgress[]>{
     return new Promise((resolve, reject) => {
-      this.http.get<LectionProgress[]>('http://localhost:8081/progress/' + UserGUID).subscribe({
+      this.http.get<LectionProgress[]>(`${this.apiUrl}/progress/` + UserGUID).subscribe({
         next: (response) => {
           resolve(response);
         },
@@ -49,14 +50,14 @@ export class HttpService {
   }
 
   public GetSubscribedLections(UserGUID: string):Observable<Lection[]>{
-    return this.http.get<Lection[]>('http://localhost:8081/lections/byUser/' + UserGUID,{
+    return this.http.get<Lection[]>(`${this.apiUrl}/lections/byUser/` + UserGUID,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
   }
 
   public RemoveUserProgress(UserGUID: string, LectionID: number):void{
-    this.http.delete('http://localhost:8081/progress/' + UserGUID + '/' + LectionID,{
+    this.http.delete(`${this.apiUrl}/progress/`+ UserGUID + '/' + LectionID,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     }).subscribe(e => console.log(e));
@@ -69,7 +70,7 @@ export class HttpService {
     }
 
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:8081/progress', body).subscribe({
+      this.http.post(`${this.apiUrl}/progress`, body).subscribe({
         next: (response: any) => {
           resolve(response);
         },
@@ -84,7 +85,7 @@ export class HttpService {
 
   public GetLection(id: number):Promise<Lection>{
     return new Promise((resolve, reject) => {
-      this.http.get<Lection>('http://localhost:8081/lections/'+id).subscribe({
+      this.http.get<Lection>(`${this.apiUrl}/lections/`+id).subscribe({
         next: (response) => {
           resolve(response);
         },
@@ -97,7 +98,7 @@ export class HttpService {
   }
 
   public GetChapters(id: number):Observable<Chapter[]>{
-    return this.http.get<Chapter[]>('http://localhost:8081/chapters/byLection/'+id,{
+    return this.http.get<Chapter[]>(`${this.apiUrl}/chapters/byLection/`+id,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
@@ -105,7 +106,7 @@ export class HttpService {
 
   public GetChapterCount(id: number):Promise<number>{
     return new Promise((resolve, reject) => {
-      this.http.get<number>('http://localhost:8081/chapters/countByLection/'+id,{
+      this.http.get<number>(`${this.apiUrl}/chapters/countByLection/`+id,{
         headers: new HttpHeaders()
           .set('Content-Type','application/json')
       }).subscribe({
@@ -121,7 +122,7 @@ export class HttpService {
   }
 
   public GetChapterContent(chapterId: number):Observable<ChapterContent[]>{
-    return this.http.get<ChapterContent[]>('http://localhost:8081/chapter-contents/byChapter/'+chapterId,{
+    return this.http.get<ChapterContent[]>(`${this.apiUrl}/chapter-contents/byChapter/`+chapterId,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
@@ -137,7 +138,7 @@ export class HttpService {
     }
 
     return new Promise((resolve, reject) => {
-      this.http.put<ChapterContent>('http://localhost:8081/chapter-contents/' + chapterContent.chapterContentId, body, {
+      this.http.put<ChapterContent>(`${this.apiUrl}/chapter-contents/` + chapterContent.chapterContentId, body, {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
       }).subscribe({
         next: (response) => {
@@ -153,7 +154,7 @@ export class HttpService {
 
   public CreateChapterContent(newChapterContent: ChapterContent): Promise<ChapterContent>{
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:8081/chapter-contents', newChapterContent).subscribe({
+      this.http.post(`${this.apiUrl}/chapter-contents`, newChapterContent).subscribe({
         next: (response: any) => {
           resolve(response);
         },
@@ -167,7 +168,7 @@ export class HttpService {
 
   public CreateChapter(newChapter: Chapter): Promise<Chapter>{
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:8081/chapters', newChapter).subscribe({
+      this.http.post(`${this.apiUrl}/chapters`, newChapter).subscribe({
         next: (response: any) => {
           resolve(response);
         },
@@ -181,7 +182,7 @@ export class HttpService {
 
   public CreateLection(newLection: Lection): Promise<Lection>{
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:8081/lections', newLection).subscribe({
+      this.http.post(`${this.apiUrl}/lections`, newLection).subscribe({
         next: (response: any) => {
           resolve(response);
         },
@@ -194,21 +195,21 @@ export class HttpService {
   }
 
   public DeleteLection(LectionId: number):Observable<void>{
-    return this.http.delete<void>('http://localhost:8081/lections/' + LectionId,{
+    return this.http.delete<void>(`${this.apiUrl}/lections/` + LectionId,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
   }
 
   public DeleteChapter(ChapterId: number):Observable<void>{
-    return this.http.delete<void>('http://localhost:8081/chapters/' + ChapterId,{
+    return this.http.delete<void>(`${this.apiUrl}/chapters/` + ChapterId,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
   }
 
   public DeleteChapterContent(ChapterContentId: number):Observable<void>{
-    return this.http.delete<void>('http://localhost:8081/chapter-contents/' + ChapterContentId,{
+    return this.http.delete<void>(`${this.apiUrl}/chapter-contents/` + ChapterContentId,{
       headers: new HttpHeaders()
         .set('Content-Type','application/json')
     });
@@ -216,7 +217,7 @@ export class HttpService {
 
   public MoveChapterContent(chapterContentId: number, moveUp: boolean): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.http.post('http://localhost:8081/chapter-contents/' + chapterContentId + '/move', moveUp)
+      this.http.post(`${this.apiUrl}/chapter-contents/` + chapterContentId + '/move', moveUp)
         .subscribe({
           next: (response:any) => {
             resolve(response);
@@ -229,7 +230,7 @@ export class HttpService {
   }
 
   public getAllWorkspaces(): Observable<Workspace[]> {
-    return this.http.get<Workspace[]>('http://localhost:8081/workspaces', {
+    return this.http.get<Workspace[]>(`${this.apiUrl}/workspaces`, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
     }).pipe(
@@ -238,14 +239,22 @@ export class HttpService {
           workspace.workspaceId,
           workspace.title,
           workspace.ownerId,
-          workspace.memberIds || []
+          workspace.memberIds || [],
+          workspace.publicWorkspace
         );
       }))
     );
   }
 
   public getMemberWorkspaces(): Observable<Workspace[]> {
-    return this.http.get<Workspace[]>(`http://localhost:8081/workspaces/member`, {
+    return this.http.get<Workspace[]>(`${this.apiUrl}/workspaces/member`, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
+  }
+
+  setPublicWorkspace(workspaceId: number, publicWorkspace: boolean): Observable<any> {
+    const url = `${this.apiUrl}/workspaces/${workspaceId}/public?publicWorkspace=${publicWorkspace}`;
+    return this.http.put(url, {}, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
   }

@@ -4,6 +4,7 @@ export class Workspace {
     public title: string,
     public ownerId: string,
     public memberIds: string[],
+    public publicWorkspace: boolean
   ) {}
 
   get memberCount(): number {
