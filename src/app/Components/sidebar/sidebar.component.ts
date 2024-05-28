@@ -7,7 +7,7 @@ import {filter, Observable, of} from "rxjs";
 import {Lection} from "../../Models/Lection";
 import {HttpService} from "../../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
-import {SidebarService} from "../sidebar-service.service";
+import {SidebarService} from "../../sidebar-service.service";
 
 @Component({
   selector: 'app-sidebar',

@@ -11,10 +11,11 @@ import {WorkspaceViewComponent} from "./workspace-view/workspace-view.component"
 import {PrivacyPolicyComponent} from "./Components/privacy-policy/privacy-policy.component";
 import {TermsOfServiceComponent} from "./Components/terms-of-service/terms-of-service.component";
 import {SidebarComponent} from "./Components/sidebar/sidebar.component";
+import {MainViewComponent} from "./main-view/main-view.component";
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent},
-  { path: 'learning', component: SidebarComponent, canActivate: [authGuard],
+  { path: 'learning', component: MainViewComponent, canActivate: [authGuard],
     children: [
       { path: 'profile', component: UserprofileComponent, canActivate: [authGuard]},
       { path: 'lectionlist', component: LectionlistComponent,canActivate: [authGuard]},
@@ -22,8 +23,8 @@ export const routes: Routes = [
       { path: 'newLection', component: LectionComponent,canActivate: [authGuard]},
       { path: 'lection/:lectionId', component: LectionComponent,canActivate: [authGuard]},
       { path: 'lection/:lectionId/:chapterId', component: ChapterComponent,canActivate: [authGuard]},
-      // { path: 'workspaces', component: WorkspacelistComponent},
-      { path: 'workspaces', component: WorkspaceViewComponent},
+       { path: 'workspaces', component: WorkspacelistComponent,canActivate: [authGuard]},
+      //{ path: 'workspaces', component: WorkspaceViewComponent,canActivate: [authGuard]},
     ]
   },
   { path: 'privacy-policy', component: PrivacyPolicyComponent},

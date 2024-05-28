@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {SidebarComponent} from "../sidebar/sidebar.component";
+
 import {MainHeaderComponent} from "../main-header/main-header.component";
 import {RouterOutlet} from "@angular/router";
 import {MainContentComponent} from "../main-content/main-content.component";
+import {SidebarComponent} from "../Components/sidebar/sidebar.component";
 
 @Component({
   selector: 'app-main-view',
