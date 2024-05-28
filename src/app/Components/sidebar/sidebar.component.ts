@@ -1,11 +1,11 @@
 import {Component, ElementRef, Input, isDevMode, QueryList, ViewChildren} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink, RouterOutlet} from "@angular/router";
+import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
-import {ExtendedKeycloakProfile} from "../extended-keycloak-profile";
-import {Observable, of} from "rxjs";
-import {Lection} from "../Models/Lection";
-import {HttpService} from "../Services/http.service";
+import {ExtendedKeycloakProfile} from "../../extended-keycloak-profile";
+import {filter, Observable, of} from "rxjs";
+import {Lection} from "../../Models/Lection";
+import {HttpService} from "../../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {SidebarService} from "../sidebar-service.service";
 
@@ -25,13 +25,7 @@ export class SidebarComponent {
   protected lections$: Observable<Lection[]>;
   @Input() title?: string;
 
-  activeChildTitle: string = '';
-
-  setActiveChild(title: string) {
-    this.activeChildTitle = title;
-  }
-
-  constructor(protected keycloak: KeycloakService, protected httpService: HttpService, private sidebarService: SidebarService) {
+  constructor(protected keycloak: KeycloakService, protected httpService: HttpService, private sidebarService: SidebarService, private router: Router) {
     this.sidebarService.isClosed$.subscribe(isClosed => this.isClosed = isClosed);
 
     if (keycloak.isLoggedIn()) {
@@ -45,6 +39,15 @@ export class SidebarComponent {
 
     this.lections$ = of([]);
     this.fetchData();
+  }
+
+  ngOnInit() {
+      this.router.events.pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      ).subscribe((event: NavigationEnd) => {
+        console.log('Navigation to:', event.url);
+      });
+
   }
 
   ngAfterViewInit() {

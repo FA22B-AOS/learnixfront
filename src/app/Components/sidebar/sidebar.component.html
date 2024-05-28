@@ -1,7 +1,7 @@
 <div class="sidebar"  [ngClass]="{ 'sidebar-closed': isClosed }"  #sidebar>
   <div class="nav-container">
     <div class="logo-details">
-      <a routerLink="">
+      <a routerLink="learning">
         <i class="bx bxs-bolt-circle"></i>
         <span class="logo_name">LEARNIX</span>
       </a>
@@ -9,17 +9,17 @@
 
     <ul class="nav-links">
       <li>
-        <a routerLink="" (click)="setActiveChild('Dashboard')">
+        <a routerLink="dashboard">
           <i class="bx bx-grid-alt"></i>
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('Dashboard')">Dashboard</a></li>
+          <li><a class="link_name" routerLink="dashboard">Dashboard</a></li>
         </ul>
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="/lectionlist" (click)="setActiveChild('Lections')">
+          <a routerLink="lectionlist">
             <i class="bx bx-collection"></i>
             <span class="link_name">Lections</span>
           </a>
@@ -29,77 +29,83 @@
 
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="lectionlist" (click)="setActiveChild('Lections')">Lections</a></li>
+          <li><a class="link_name" routerLink="lectionlist">Lections</a></li>
           <ng-container *ngFor="let lection of lections$ | async">
-            <li><a [routerLink]="['/lection/', lection.lectionId]" (click)="setActiveChild('Lections')">{{lection.title}}</a></li>
+            <li><a [routerLink]="['lection/', lection.lectionId]">{{lection.title}}</a></li>
           </ng-container>
         </ul>
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="" (click)="setActiveChild('Posts')">
+          <a routerLink="posts">
             <i class="bx bx-book-alt"></i>
             <span class="link_name">Posts</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('Posts')">Posts</a></li>
+        <ul class="sub-menu">
+          <li><a class="link_name" routerLink="posts">Posts</a></li>
+          <li><a routerLink="webdesign">Web Design</a></li>
+          <li><a routerLink="loginform">Login Form</a></li>
+          <li><a routerLink="carddesign">Card Design</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="" (click)="setActiveChild('Analytics')">
+        <a routerLink="analytics">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('Analytics')">Analytics</a></li>
+          <li><a class="link_name" routerLink="analytics">Analytics</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="" (click)="setActiveChild('Chart')">
+        <a routerLink="chart">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Chart</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('Chart')">Chart</a></li>
+          <li><a class="link_name" routerLink="chart">Chart</a></li>
         </ul>
       </li>
       <li>
-        <div class="icon-link" (click)="setActiveChild('Plugins')">
-          <a routerLink="">
+        <div class="icon-link">
+          <a routerLink="plugins">
             <i class="bx bx-plug"></i>
             <span class="link_name">Plugins</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('Plugins')">Plugins</a></li>
+        <ul class="sub-menu">
+          <li><a class="link_name" routerLink="plugins">Plugins</a></li>
+          <li><a routerLink="uiface">UI Face</a></li>
+          <li><a routerLink="pigments">Pigments</a></li>
+          <li><a routerLink="boxicons">Box Icons</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="workspaces" (click)="setActiveChild('Workspaces')">
+        <a routerLink="workspaces">
           <i class="bx bx-compass"></i>
           <span class="link_name">Workspaces</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="workspaces" (click)="setActiveChild('Workspaces')">Workspaces</a></li>
+          <li><a class="link_name" routerLink="workspaces">Workspaces</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="" (click)="setActiveChild('History')">
+        <a routerLink="history">
           <i class="bx bx-history"></i>
           <span class="link_name">History</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="" (click)="setActiveChild('History')">History</a></li>
+          <li><a class="link_name" routerLink="history">History</a></li>
         </ul>
       </li>
     </ul>
-    @if(keycloak.isLoggedIn() || isDevMode()){
+<!--    @if(keycloak.isLoggedIn() || isDevMode()){-->
       <div class="profile-details">
         <div class="icon-link">
-          <a routerLink="" (click)="setActiveChild('Profile')">
+          <a routerLink="profile">
             <div class="profile-content">
               <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&q=70&fm=webp" alt="profile">
             </div>
@@ -111,26 +117,26 @@
           <i class="bx bxs-chevron-down arrow" #arrow></i>
       </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="profile" (click)="setActiveChild('Profile')">Profile</a></li>
-          <li><a routerLink="mylections" (click)="setActiveChild('My Lections')">My Lections</a></li>
-          <li><a routerLink="" (click)="setActiveChild('Settings')">Settings</a></li>
+          <li><a class="link_name" routerLink="profile">Profile</a></li>
+          <li><a routerLink="mylections">My Lections</a></li>
+          <li><a routerLink="settings">Settings</a></li>
           <li class="logout" (click)="logout()">Logout</li>
         </ul>
       </div>
-    } @else {
-      <div class="profile-details login">
-        <div class="icon-link">
-          <a (click)="login()">
-            <div class="profile-content">
-              <i class="bx bx-log-in"></i>
-            </div>
-            <div class="name-job">
-              <div class="profile_name">Login</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    }
+<!--    } @else {-->
+<!--      <div class="profile-details login">-->
+<!--        <div class="icon-link">-->
+<!--          <a (click)="login()">-->
+<!--            <div class="profile-content">-->
+<!--              <i class="bx bx-log-in"></i>-->
+<!--            </div>-->
+<!--            <div class="name-job">-->
+<!--              <div class="profile_name">Login</div>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    }-->
   </div>
 </div>
 <!--<section class="home-section">-->

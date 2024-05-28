@@ -246,11 +246,11 @@
   transition: all 0.5s ease;
 }
 
-.sidebar .nav-container .profile-details.login {
+.sidebar .nav-container .profile-details.login-btn {
   justify-content: flex-start;
 }
 
-.sidebar .nav-container .profile-details.login a{
+.sidebar .nav-container .profile-details.login-btn a{
   width: 100%;
   cursor: pointer;
 }
@@ -295,7 +295,7 @@
   opacity: 0;
 }
 
-.sidebar.sidebar-closed .nav-container .profile-details.login i {
+.sidebar.sidebar-closed .nav-container .profile-details.login-btn i {
   display: block;
   opacity: 1;
 }
