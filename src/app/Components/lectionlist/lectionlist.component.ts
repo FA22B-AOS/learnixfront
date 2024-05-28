@@ -37,13 +37,12 @@ export class LectionlistComponent {
 
   constructor(private httpService: HttpService, private router: Router, private keycloak: KeycloakService) {
     this.lections$ = of([]);
-    this.privateList = this.router.url === '/mylections';
+    this.privateList = this.router.url === '/learning/mylections';
     this.UserGUID = this.keycloak.getKeycloakInstance().subject;
     this.fetchData();
   }
 
   protected removeLectionFromList(lectionToRemove: Lection): void {
-
     if(this.privateList && this.UserGUID !== undefined)
       this.httpService.RemoveUserProgress(this.UserGUID, lectionToRemove.lectionId);
     else if (this.UserGUID != undefined)
