@@ -19,7 +19,7 @@
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="lectionlist">
+          <a routerLink="/lectionlist">
             <i class="bx bx-collection"></i>
             <span class="link_name">Lections</span>
           </a>
@@ -31,7 +31,7 @@
         <ul class="sub-menu">
           <li><a class="link_name" routerLink="lectionlist">Lections</a></li>
           <ng-container *ngFor="let lection of lections$ | async">
-            <li><a [routerLink]="['lection/', lection.lectionId]">{{lection.title}}</a></li>
+            <li><a [routerLink]="['/lection/', lection.lectionId]">{{lection.title}}</a></li>
           </ng-container>
         </ul>
       </li>
@@ -56,7 +56,7 @@
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="analytics">Analytics</a></li>
+          <li><a class="link_name" routerLink="">Analytics</a></li>
         </ul>
       </li>
       <li>
@@ -65,7 +65,7 @@
           <span class="link_name">Chart</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="chart">Chart</a></li>
+          <li><a class="link_name" routerLink="">Chart</a></li>
         </ul>
       </li>
       <li>
@@ -140,11 +140,14 @@
   </div>
 </div>
 <section class="home-section">
-  <div class="home-content">
+  <div class="home-menu">
     <i class="bx bx-menu" (click)="toggleSidebar()"></i>
     <span class="text">Drop Down Sidebar</span>
   </div>
+  <div class="home-content">
     <router-outlet></router-outlet>
+  </div>
+
 </section>
 
 
