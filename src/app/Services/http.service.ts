@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {Lection} from "../Models/Lection";
 import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
@@ -233,19 +233,7 @@ export class HttpService {
     return this.http.get<Workspace[]>(`${this.apiUrl}/workspaces`, {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
-    }).pipe(
-      map(workspaces => workspaces.map(workspace => {
-        return new Workspace(
-          workspace.workspaceId,
-          workspace.title,
-          workspace.ownerId,
-          workspace.memberIds || [],
-          workspace.publicWorkspace,
-          workspace.inviteOnly
-
-        );
-      }))
-    );
+    });
   }
 
   public getMemberWorkspaces(): Observable<Workspace[]> {

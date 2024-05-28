@@ -1,30 +1,25 @@
-import {Component, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component} from '@angular/core';
 import {WorkspacecardComponent} from "../workspacecard/workspacecard.component";
-import {catchError, forkJoin, map, Observable, of} from "rxjs";
-import {HttpService} from "../Services/http.service";
+import {forkJoin, map, Observable, of} from "rxjs";
 import {Router} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
 import {Workspace} from "../Models/Workspace";
-import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {LektioncardComponent} from "../Components/lektioncard/lektioncard.component";
+import {CommonModule} from "@angular/common";
+import {HttpService} from "../Services/http.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-workspacelist',
   standalone: true,
   imports: [
     WorkspacecardComponent,
-    AsyncPipe,
-    FormsModule,
-    LektioncardComponent,
-    NgForOf,
-    NgIf
+    CommonModule,
+    HttpClientModule
   ],
   templateUrl: './workspacelist.component.html',
   styleUrl: './workspacelist.component.css'
 })
 export class WorkspacelistComponent {
-  @ViewChild('dynamicComponentContainer', { read: ViewContainerRef }) dynamicComponentContainer: ViewContainerRef | undefined;
   protected workspaces$: Observable<Workspace[]>;
   protected myWorkspaces$: Observable<Workspace[]>;
   protected nonMemberWorkspaces$: Observable<Workspace[]>;
@@ -44,34 +39,9 @@ export class WorkspacelistComponent {
 
     if (this.UserGUID) {
 
-      this.myWorkspaces$ = this.httpService.getMemberWorkspaces().pipe(
-        map(workspaces => {
-          console.log('Member Workspaces:', workspaces);
-          return workspaces.map(workspace => new Workspace(
-            workspace.workspaceId,
-            workspace.title,
-            workspace.ownerId,
-            workspace.memberIds,
-            workspace.publicWorkspace,
-            workspace.inviteOnly
-          ));
-        }),
-        catchError(() => of([]))  // Fallback to empty array on error
-      );
+      this.myWorkspaces$ = this.httpService.getMemberWorkspaces();
 
-      this.workspaces$ = this.httpService.getAllWorkspaces().pipe(
-        map(workspaces => {
-          return workspaces.map(workspace => new Workspace(
-            workspace.workspaceId,
-            workspace.title,
-            workspace.ownerId,
-            workspace.memberIds,
-            workspace.publicWorkspace,
-            workspace.inviteOnly
-          ));
-        }),
-        catchError(() => of([]))  // Fallback to empty array on error
-      );
+      this.workspaces$ = this.httpService.getAllWorkspaces();
 
       this.nonMemberWorkspaces$ = forkJoin([this.workspaces$, this.myWorkspaces$]).pipe(
         map(([allWorkspaces, memberWorkspaces]) => {

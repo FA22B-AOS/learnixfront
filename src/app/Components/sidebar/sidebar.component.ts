@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, isDevMode, QueryList, ViewChildren} from '@angular/core';
+import {Component, ElementRef, Input, QueryList, ViewChildren} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
@@ -78,6 +78,4 @@ export class SidebarComponent {
   private fetchData():void{
     this.lections$ = this.httpService.GetLections();
   }
-
-  protected readonly isDevMode = isDevMode;
 }
