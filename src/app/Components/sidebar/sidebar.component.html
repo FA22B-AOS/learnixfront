@@ -19,7 +19,7 @@
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="/lectionlist">
+          <a routerLink="lectionlist">
             <i class="bx bx-collection"></i>
             <span class="link_name">Lections</span>
           </a>
@@ -31,7 +31,7 @@
         <ul class="sub-menu">
           <li><a class="link_name" routerLink="lectionlist">Lections</a></li>
           <ng-container *ngFor="let lection of lections$ | async">
-            <li><a [routerLink]="['/lection/', lection.lectionId]">{{lection.title}}</a></li>
+            <li><a [routerLink]="['lection/', lection.lectionId]">{{lection.title}}</a></li>
           </ng-container>
         </ul>
       </li>
