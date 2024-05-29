@@ -19,6 +19,7 @@ import {RouterLink} from "@angular/router";
 })
 export class WorkspacecardComponent {
   @Input() workspace!: Workspace;
+  @Input() member = true;
 
   constructor(private httpService: HttpService, private keycloak: KeycloakService) {
   }

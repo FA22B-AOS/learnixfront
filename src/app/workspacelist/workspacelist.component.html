@@ -1,4 +1,5 @@
-<div class="container">
+<app-workspace-header [searchbarOnly]="true"></app-workspace-header>
+<div class="container pt-3">
   <ng-container *ngIf="(myWorkspaces$ | async)?.length">
     <div class="row m-0">
       My workspaces
@@ -15,7 +16,7 @@
 
 
 
-  <div class="row m-0">
+  <div class="row m-0 mt-3">
     All workspaces
   </div>
   <hr>
@@ -23,7 +24,7 @@
   <div class="row m-0">
     <ng-container *ngFor="let workspace of nonMemberWorkspaces$ | async">
       <div class="col-xs-4 col-lg-3">
-        <app-workspacecard [workspace]="workspace"></app-workspacecard>
+        <app-workspacecard [workspace]="workspace" [member]="false"></app-workspacecard>
       </div>
     </ng-container>
   </div>

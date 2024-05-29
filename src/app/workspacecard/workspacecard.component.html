@@ -5,7 +5,11 @@
       <p> Members: {{workspace.memberCount}}</p>
 
       <a (click)="requestAccess()" class="neon-button">
-        Access
+        @if (member) {
+          Access
+        } @else {
+          Join
+        }
       </a>
     </div>
   </div>

@@ -7,6 +7,8 @@ import {Workspace} from "../Models/Workspace";
 import {CommonModule} from "@angular/common";
 import {HttpService} from "../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
+import {HeaderComponent} from "../Components/landingpage/Content/header/header.component";
+import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
 
 @Component({
   selector: 'app-workspacelist',
@@ -14,7 +16,9 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     WorkspacecardComponent,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    HeaderComponent,
+    WorkspaceHeaderComponent
   ],
   templateUrl: './workspacelist.component.html',
   styleUrl: './workspacelist.component.css'

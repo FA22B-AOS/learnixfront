@@ -19,6 +19,7 @@ export class WorkspaceHeaderComponent {
   @Input() workspace:  Workspace | undefined;
   inviteOnly: boolean = false;
   publicWorkspace: boolean = false;
+  @Input() searchbarOnly  = false;
 
   constructor(private httpService: HttpService) {
   }
