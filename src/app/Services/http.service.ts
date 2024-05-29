@@ -276,8 +276,4 @@ export class HttpService {
     })
   }
 
-  public AddKeycloakAdmin(id: number): Promise<void> {
-    return new Promise((resolve, reject) => {
-    });
-  }
 }

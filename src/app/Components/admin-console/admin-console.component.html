@@ -6,9 +6,18 @@
     border:1px solid #21386c;
   }
 
-  h1 {text-align: center;}
-  p  {text-align: center;}
-  div {text-align: center;}
+  .button2 {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 </style>
 
 <body>
@@ -25,9 +34,8 @@
     <td>{{user.username}}</td>
     <td>{{ user.email }}</td>
     <td>
-      <i class="bi bi-person-x button" (click)="alert('IMPLEMENT ME!')"></i>
-      <i class="bi bi-trash button" (click)="alert('IMPLEMENT ME!')"></i>
-      <i class="bi bi-pencil-fill button" (click)="UpdateUser(user.id)"></i>
+      <i class="bi bi-person-x button" (click)="GetAllUsers()"></i>
+      <i class="bi bi-trash button" (click)="GetAllUsers()"></i>
     </td>
   </tr>
 </table>
