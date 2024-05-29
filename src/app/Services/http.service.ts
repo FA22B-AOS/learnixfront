@@ -246,7 +246,18 @@ export class HttpService {
      ;
    })
   }
-  
+
+  public UpdateKeyCloakUser(userID: string, body: any): void{
+    this.http.put('http://localhost:8080/admin/realms/learnix/users/'+userID, body).subscribe({
+      next: (response:any) => {
+        console.log(response);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    });
+  }
+
 
   public GetUserInfo(userid: number): Promise<KeycloakUser[]>{
     const headers = new HttpHeaders();
