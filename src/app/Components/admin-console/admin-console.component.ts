@@ -39,7 +39,6 @@ export class AdminConsoleComponent {
       lastName: 'Lord',
       email: 'kek@lord.xxx'
     }
-
     this._http.UpdateKeyCloakUser(userID,userData);
   }
 
