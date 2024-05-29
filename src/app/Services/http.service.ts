@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lection} from "../Models/Lection";
@@ -6,13 +6,15 @@ import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {KeycloakService} from "keycloak-angular";
+import {KeycloakUser} from "../Models/KeycloakUser";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private KeycloakService: KeycloakService) { }
 
   public GetLections():Observable<Lection[]>{
     return this.http.get<Lection[]>('http://localhost:8081/lections',{
@@ -228,6 +230,43 @@ export class HttpService {
     });
   }
 
+  public GetKeycloakUsers(): Promise<KeycloakUser[]>{
+    const headers = new HttpHeaders();
+    this.KeycloakService.addTokenToHeader(headers);
 
+   return new Promise((resolve, reject) => {
+     this.http.get('http://localhost:8080/admin/realms/learnix/users', {headers: headers}).
+     subscribe({
+       next: (response:any) => {
+         resolve(response);
+       },
+       error: (error) => {
+         reject(error);
+       } })
+     ;
+   })
+  }
+  
 
+  public GetUserInfo(userid: number): Promise<KeycloakUser[]>{
+    const headers = new HttpHeaders();
+    this.KeycloakService.addTokenToHeader(headers);
+
+    return new Promise((resolve, reject) => {
+      this.http.get('http://localhost:8080/admin/realms/learnix/users/'+ userid, {headers: headers}).
+      subscribe({
+        next: (response:any) => {
+          resolve(response);
+        },
+        error: (error) => {
+          reject(error);
+        } })
+      ;
+    })
+  }
+
+  public AddKeycloakAdmin(id: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+    });
+  }
 }

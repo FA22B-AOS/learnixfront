@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<style>
+  table, th, td
+  {
+    border:1px solid #21386c;
+  }
+
+  h1 {text-align: center;}
+  p  {text-align: center;}
+  div {text-align: center;}
+</style>
+
+<body>
+
+<h2>Users</h2>
+<br>
+<table style="width:100%">
+  <tr >
+    <td ><b style="color:#000104;"> Username </b></td>
+    <td><b style="color:#000104;"> E-Mail </b></td>
+    <td><b style="color:#000104;"> Actions </b></td>
+  </tr>
+  <tr *ngFor=" let user of users">
+    <td>{{user.username}}</td>
+    <td>{{ user.email }}</td>
+    <td>
+      <i class="bi bi-person-x button" (click)="GetAllUsers()"></i>
+      <i class="bi bi-trash button" (click)="GetAllUsers()"></i>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
+
+
+
+
