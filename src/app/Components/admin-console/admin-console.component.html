@@ -6,9 +6,18 @@
     border:1px solid #21386c;
   }
 
-  h1 {text-align: center;}
-  p  {text-align: center;}
-  div {text-align: center;}
+  .button2 {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
 </style>
 
 <body>
@@ -26,10 +35,19 @@
     <td>{{ user.email }}</td>
     <td>
       <i class="bi bi-person-x button" (click)="GetAllUsers()"></i>
-      <i class="bi bi-trash button" (click)="GetAllUsers()"></i>
+      <i class="bi bi-pencil-square button" (click)="GetAllUsers()"></i>
     </td>
   </tr>
 </table>
+<br> <br>
+<form>
+  <label for="username"></label><br>
+  <input type="text" id="username" name="username" value="Username"><br>
+  <label for="passwort"></label><br>
+  <input type="text" id="passwort" name="passwort" value="Passwort">
+  <br>
+    <i class="bi bi-person-x button2" (click)="GetAllUsers()"></i>
+</form>
 
 </body>
 </html>

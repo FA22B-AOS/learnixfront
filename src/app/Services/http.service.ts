@@ -246,7 +246,7 @@ export class HttpService {
      ;
    })
   }
-  
+
 
   public GetUserInfo(userid: number): Promise<KeycloakUser[]>{
     const headers = new HttpHeaders();
@@ -265,8 +265,4 @@ export class HttpService {
     })
   }
 
-  public AddKeycloakAdmin(id: number): Promise<void> {
-    return new Promise((resolve, reject) => {
-    });
-  }
 }
