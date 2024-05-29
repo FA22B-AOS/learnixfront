@@ -1,0 +1,13 @@
+<div class="form-container" xmlns="http://www.w3.org/1999/html">
+
+  <h1>Einstellungen ändern</h1>
+  <h3>Persönliche Informationen</h3>
+  <div class="profile-picture-container">
+    <!--<img id="profile_picture" src="path_to_profile_image.jpg" alt="Profilbild" class="profile-picture" onclick="document.getElementById('profile_image_input').click();"> <-->
+    <input type="file" id="profile_image_input" name="profile_image" accept="image/*" style="display: none;">
+  </div>
+  <input [value]="firstName" type="text" firstname="name" placeholder="firstname" class="box" required>
+  <input [value]="lastName" type="text" lastname="name" placeholder="lastname" class="box" required>
+  <button (click)="UpdateProfile()" value="speichern" class="btn">Speichern</button>
+</div>
+
