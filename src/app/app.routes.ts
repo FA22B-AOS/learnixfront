@@ -24,7 +24,9 @@ export const routes: Routes = [
       { path: 'lection/:lectionId', component: LectionComponent,canActivate: [authGuard]},
       { path: 'lection/:lectionId/:chapterId', component: ChapterComponent,canActivate: [authGuard]},
        { path: 'workspaces', component: WorkspacelistComponent,canActivate: [authGuard]},
-      //{ path: 'workspaces', component: WorkspaceViewComponent,canActivate: [authGuard]},
+       //
+         { path: 'workspaces/:workspaceId', component: WorkspaceViewComponent,canActivate: [authGuard]},
+      // ]},
     ]
   },
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
