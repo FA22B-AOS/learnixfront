@@ -1,49 +1,54 @@
-<!DOCTYPE html>
-<html>
-<style>
-  table, th, td
-  {
-    border:1px solid #21386c;
-  }
-
-  .button2 {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
-</style>
-
-<body>
-
+<body style="margin:15px;padding:15px">
 <h2>Users</h2>
+
 <br>
 <table style="width:100%">
   <tr >
     <td ><b style="color:#000104;"> Username </b></td>
     <td><b style="color:#000104;"> E-Mail </b></td>
+    <td><b style="color:#000104;"> First Name </b></td>
+    <td><b style="color:#000104;"> Last Name </b></td>
+    <td><b style="color:#000104;"> Groups </b></td>
     <td><b style="color:#000104;"> Actions </b></td>
   </tr>
   <tr *ngFor=" let user of users">
-    <td>{{user.username}}</td>
+    <td>{{ user.username }}</td>
     <td>{{ user.email }}</td>
+    <td>{{ user.firstName}}</td>
+    <td>{{ user.lastName}}</td>
+    <td>{{ user.groups[0]}}</td>
     <td>
-      <i class="bi bi-person-x button" (click)="alert('IMPLEMENT ME!')"></i>
-      <i class="bi bi-trash button" (click)="alert('IMPLEMENT ME!')"></i>
-      <i class="bi bi-pencil-fill button" (click)="UpdateUser(user.id)"></i>
+      <i class="bi bi-trash button" (click)="DeleteUser(user.id)"></i>
     </td>
   </tr>
 </table>
+<br> <br>
+
+<div class="float-parent-element">
+  <div class="float-child-element">
+<label for="username"></label><br>
+<input [(ngModel)]="newUsername" type="text" id="username" name="username" placeholder="Username*"><br>
+<label for="email"></label>
+<input [(ngModel)]="email" type="text" id="email" name="email" placeholder="E-Mail"><br>
+<label for="firstName"></label>
+<input [(ngModel)]="firstName" type="text" id="firstName" name="firstName" placeholder="First Name"><br>
+<label for="lastName"></label>
+<input [(ngModel)]="lastName" type="text" id="lastName" name="lastName" placeholder="Last Name"><br>
+<button class="bi bi-person-plus button2" (click)="CreateKeyCloakUser()"> Add User </button>
+<br>
+    </div>
+
+  <div class="float-child-element">
+  </div>
+  <label for="updateUsername"></label><br>
+  <input [(ngModel)]="updateUsername" type="text" id="updateUsername" name="updateUsername" placeholder="Username*"><br>
+  <label for="UpdateEmail"></label>
+  <input [(ngModel)]="updateEmail" type="text" id="updateEmail" name="updateEmail" placeholder="E-Mail"><br>
+  <label for="updateFirstName"></label>
+  <input [(ngModel)]="updateFirstName" type="text" id="updateFirstName" name="firstName" placeholder="First Name"><br>
+  <label for="updateLastName"></label>
+  <input [(ngModel)]="updateLastName" type="text" id="updateLastName" name="lastName" placeholder="Last Name"><br>
+  <button class="bi bi-person-gear button2" (click)="UpdateUser(updateUsername)"> Update User </button>
+  </div>
 
 </body>
-</html>
-
-
-
-

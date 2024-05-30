@@ -248,7 +248,33 @@ export class HttpService {
   }
 
   public UpdateKeyCloakUser(userID: string, body: any): void{
-    this.http.put('http://localhost:8080/admin/realms/learnix/users/'+userID, body).subscribe({
+    this.http.put('http://localhost:8080/admin/realms/learnix/users/' + userID , body).subscribe({
+      next: (response:any) => {
+        console.log(response);
+        alert("User updated")
+      },
+      error: (error) => {
+        console.log(error);
+        alert("User could not be updated. Please check the E-Mail and other Parameters")
+      }
+    });
+  }
+
+  public DeleteKeycloakUser(userID: string, body: any): void{
+    this.http.delete('http://localhost:8080/admin/realms/learnix/users/'+userID, body).subscribe({
+      next: (response:any) => {
+        console.log(response);
+        alert("User has been deleted")
+      },
+      error: (error) => {
+        alert("User is already Deletet.")
+        console.log(error);
+      }
+    });
+  }
+
+  public AddKeycloakUser(body: any): void{
+    this.http.post('http://localhost:8080/admin/realms/learnix/users/', body).subscribe({
       next: (response:any) => {
         console.log(response);
       },
@@ -258,7 +284,22 @@ export class HttpService {
     });
   }
 
-
+  public GetId(username: string): Promise<KeycloakUser[]>{
+    const headers = new HttpHeaders();
+    this.KeycloakService.addTokenToHeader(headers);
+    return new Promise((resolve, reject) => {
+      this.http.get<any[]>('http://localhost:8080/admin/realms/learnix/users?username='+ username, {headers: headers}).
+      subscribe({
+        next: (response:any) => {
+          resolve(response);
+        },
+        error: (error) => {
+          reject(error);
+        } })
+      ;
+    })
+  }
+  
   public GetUserInfo(userid: number): Promise<KeycloakUser[]>{
     const headers = new HttpHeaders();
     this.KeycloakService.addTokenToHeader(headers);
@@ -276,4 +317,26 @@ export class HttpService {
     })
   }
 
+  public SetTempPass(userId : string): Promise<any>{
+    const body = {
+      type: "password",
+      temporary: true,
+      value: 'Test123'
+    }
+    return new Promise((resolve, reject) => {
+      this.http.put<any>('http://localhost:8080/admin/realms/learnix/users/' + userId + '/reset-password', body, {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }).subscribe({
+        next: (response) => {
+          resolve(response);
+          console.log(response);
+          alert("User Added Successfully, your temporary password: 'Test123' , Please log in to update your password.")
+        },
+        error: (error) => {
+          console.error(error);
+          reject(error);
+        }
+      });
+    });
+  }
 }

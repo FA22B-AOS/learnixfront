@@ -1,8 +1,12 @@
+import {Credentials} from "./Credentials";
+import {strings} from "@material/icon-button";
+
 export class KeycloakUser {
   constructor(
     public id : string,
+    public groups: string[],
     public username?: string,
-    public firtNamne?: string,
+    public firstName?: string,
     public lastName?: string,
     public email?: string,
     public emailVerified?: boolean,
@@ -15,7 +19,7 @@ export class KeycloakUser {
     public totp?: boolean,
     public federationLink?: string,
     public serviceAccountClientId?: string,
-    public credentials?: string[],
+    public credentials?: Credentials,
     public disableableCredentialTypes?: string [],
     public requiredActions?: string [],
     public federatedIdentities?: string [],
@@ -25,7 +29,6 @@ export class KeycloakUser {
     public notBefore?: number,
     public applicationRoles?: string[],
     public socialLinks?: string[],
-    public groups?: string[],
     public access?: boolean[],
   ) {}
 }

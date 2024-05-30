@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import {HttpService} from "../../Services/http.service";
 import {KeycloakUser} from "../../Models/KeycloakUser";
 import {NgForOf} from "@angular/common";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {resolve} from "@angular/compiler-cli";
+import {HttpClient, HttpClientModule, HttpHeaders} from "@angular/common/http";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-admin-console',
   standalone: true,
   imports: [
     NgForOf,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   templateUrl: './admin-console.component.html',
   styleUrl: './admin-console.component.css'
@@ -19,6 +20,16 @@ export class AdminConsoleComponent {
 
   constructor(private _http: HttpService, private http: HttpClient) {}
   users: KeycloakUser[] | undefined;
+  firstName: string = "";
+  lastName: string = "";
+  newUsername: string = "";
+  email: string = "";
+
+  updateUsername: string = ""
+  updateFirstName: string = "";
+  updateLastName: string = "";
+  updateEmail: string = "";
+
 
   ngOnInit() :void {
     this.GetAllUsers();
@@ -31,22 +42,52 @@ export class AdminConsoleComponent {
     });
   }
 
-  protected UpdateUser(userID: string){
-    //Beispiel
+  protected UpdateUser(username: string){
     let userData = {
-      id: userID,
-      firstName: 'Kek',
-      lastName: 'Lord',
-      email: 'kek@lord.xxx'
+      firstName: this.updateFirstName,
+      lastName: this.updateLastName,
+      email: this.updateEmail
     }
-    this._http.UpdateKeyCloakUser(userID,userData);
+
+    this._http.GetId(username).then(result => {
+      {
+        this._http.UpdateKeyCloakUser(result[0].id, userData);
+      }
+    })
   }
 
-  GetUserInfo($event: MouseEvent, userId: number) {
-    this._http.GetUserInfo(userId).then((response) => {
-      console.log(response);
-      this.users = response;
-    });
+  protected DeleteUser(userID: string){
+    let userData = {
+      id: userID,
+    }
+    this._http.DeleteKeycloakUser(userID, userData);
+  }
+
+  public CreateKeyCloakUser(): void{
+    let body = {
+      firstName: this.firstName ,
+      lastName: this.lastName,
+      email: this.email,
+      enabled: true,
+      username: this.newUsername
+    }
+    new Promise((resolve, reject) => {
+      this.http.post('http://localhost:8080/admin/realms/learnix/users', body).subscribe({
+        next: (response: any) => {
+          resolve(response);
+        },
+        error: (error) => {
+          console.error(error);
+          reject(error);
+        }
+      });
+    }).then(result => {
+      this._http.GetId(this.newUsername).then(result => {
+        {
+          this._http.SetTempPass(result[0].id).then();
+        }
+      })
+    })
   }
 
   //protected readonly KeycloakUser = KeycloakUser;
