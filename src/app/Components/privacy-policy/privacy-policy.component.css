@@ -1,0 +1,40 @@
+#privacy-policy-section {
+  padding: 100px 0;
+  background-color: rgba(6, 12, 34, 0.98);
+  color: #fff;
+}
+
+#privacy-policy-section h2 {
+  margin-bottom: 30px;
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+}
+
+#privacy-policy-section .content-box .card {
+  margin-bottom: 20px;
+  background: #fff;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#privacy-policy-section .content-box .card .card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+}
+
+#privacy-policy-section .content-box .card .card-text {
+  font-size: 16px;
+  color: #000;
+}
+
+#privacy-policy-section .content-box .card ul {
+  padding-left: 20px;
+}
+
+#privacy-policy-section .content-box .card ul li {
+  list-style-type: disc;
+  color: #000;
+}
