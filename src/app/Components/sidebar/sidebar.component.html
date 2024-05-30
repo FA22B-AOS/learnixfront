@@ -1,7 +1,7 @@
-<div class="sidebar" #sidebar>
+<div class="sidebar"  [ngClass]="{ 'sidebar-closed': isClosed }"  #sidebar>
   <div class="nav-container">
     <div class="logo-details">
-      <a routerLink="learning">
+      <a routerLink="/learning">
         <i class="bx bxs-bolt-circle"></i>
         <span class="logo_name">LEARNIX</span>
       </a>
@@ -56,7 +56,7 @@
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="">Analytics</a></li>
+          <li><a class="link_name" routerLink="analytics">Analytics</a></li>
         </ul>
       </li>
       <li>
@@ -65,7 +65,7 @@
           <span class="link_name">Chart</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="">Chart</a></li>
+          <li><a class="link_name" routerLink="chart">Chart</a></li>
         </ul>
       </li>
       <li>
@@ -84,12 +84,12 @@
         </ul>
       </li>
       <li>
-        <a routerLink="explore">
+        <a routerLink="workspaces">
           <i class="bx bx-compass"></i>
-          <span class="link_name">Explore</span>
+          <span class="link_name">Workspaces</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="explore">Explore</a></li>
+          <li><a class="link_name" routerLink="workspaces">Workspaces</a></li>
         </ul>
       </li>
       <li>
@@ -118,7 +118,7 @@
 <!--    @if(keycloak.isLoggedIn() || isDevMode()){-->
       <div class="profile-details">
         <div class="icon-link">
-          <a routerLink="">
+          <a routerLink="profile">
             <div class="profile-content">
               <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&q=70&fm=webp" alt="profile">
             </div>
@@ -152,15 +152,15 @@
 <!--    }-->
   </div>
 </div>
-<section class="home-section">
-  <div class="home-menu">
-    <i class="bx bx-menu" (click)="toggleSidebar()"></i>
-    <span class="text">Drop Down Sidebar</span>
-  </div>
-  <div class="home-content">
-    <router-outlet></router-outlet>
-  </div>
+<!--<section class="home-section">-->
+<!--  <div class="home-menu">-->
+<!--    <i class="bx bx-menu" (click)="toggleSidebar()"></i>-->
+<!--    <span class="text">{{activeChildTitle}}</span>-->
+<!--  </div>-->
+<!--  <div class="home-content">-->
+<!--    <router-outlet></router-outlet>-->
+<!--  </div>-->
 
-</section>
+<!--</section>-->
 
 

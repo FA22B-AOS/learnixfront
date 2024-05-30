@@ -6,15 +6,18 @@ import {PageNotFoundComponent} from "./Components/page-not-found/page-not-found.
 import {authGuard, authGuardAdmin} from "./auth.guard";
 import {LectionlistComponent} from "./Components/lectionlist/lectionlist.component";
 import {UserprofileComponent} from "./Components/userprofile/userprofile.component";
+import {PedroComponent} from "./Components/pedro/pedro.component";
 import {AdminConsoleComponent} from "./Components/admin-console/admin-console.component";
 import {PrivacyPolicyComponent} from "./Components/privacy-policy/privacy-policy.component";
 import {TermsOfServiceComponent} from "./Components/terms-of-service/terms-of-service.component";
-import {SidebarComponent} from "./Components/sidebar/sidebar.component";
-import {PedroComponent} from "./Components/pedro/pedro.component";
+import {MainViewComponent} from "./main-view/main-view.component";
+import {WorkspacelistComponent} from "./Components/workspacelist/workspacelist.component";
+import {WorkspaceViewComponent} from "./Components/workspace-view/workspace-view.component";
+
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent},
-  { path: 'learning', component: SidebarComponent, canActivate: [authGuard],
+  { path: 'learning', component: MainViewComponent, canActivate: [authGuard],
     children: [
       { path: 'profile', component: UserprofileComponent, canActivate: [authGuard]},
       { path: 'lectionlist', component: LectionlistComponent,canActivate: [authGuard]},
@@ -23,6 +26,10 @@ export const routes: Routes = [
       { path: 'lection/:lectionId', component: LectionComponent,canActivate: [authGuard]},
       { path: 'lection/:lectionId/:chapterId', component: ChapterComponent,canActivate: [authGuard]},
       { path: 'admin', component: AdminConsoleComponent, canActivate: [authGuardAdmin]},
+       { path: 'workspaces', component: WorkspacelistComponent,canActivate: [authGuard]},
+       //
+         { path: 'workspaces/:workspaceId', component: WorkspaceViewComponent,canActivate: [authGuard]},
+      // ]},
     ]
   },
   { path: 'privacy-policy', component: PrivacyPolicyComponent},

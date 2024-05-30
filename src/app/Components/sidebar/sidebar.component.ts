@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, isDevMode, QueryList, ViewChild, ViewChildren} from '@angular/core';
+import {Component, ElementRef, Input, QueryList, ViewChildren} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
@@ -7,6 +7,7 @@ import {filter, Observable, of} from "rxjs";
 import {Lection} from "../../Models/Lection";
 import {HttpService} from "../../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
+import {SidebarService} from "../../Services/sidebar-service.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -17,28 +18,22 @@ import {HttpClientModule} from "@angular/common/http";
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  @ViewChild("sidebar") sidebar? : ElementRef;
+  isClosed: boolean = false;
   @ViewChildren('arrow') arrows?: QueryList<ElementRef> | undefined;
   protected profileName: any;
   protected profileJob: any;
   protected lections$: Observable<Lection[]>;
-
-  protected menuItems: { id: number, name: string, symbol?: string }[] = [
-    { "id": 0, "name": "Home", "symbol": "bi-house" },
-    { "id": 1, "name": "Lections", "symbol": "bi-book"},
-    { "id": 2, "name": "Practice", "symbol": "bi-lightning"},
-    { "id": 3, "name": "Statistics", "symbol": "bi-graph-up"}
-  ];
   @Input() title?: string;
 
-  constructor(protected keycloak: KeycloakService, protected httpService: HttpService, private router: Router) {
+  constructor(protected keycloak: KeycloakService, protected httpService: HttpService, private sidebarService: SidebarService, private router: Router) {
+    this.sidebarService.isClosed$.subscribe(isClosed => this.isClosed = isClosed);
+
     if (keycloak.isLoggedIn()) {
       keycloak.loadUserProfile().then(async (value) => {
         const typedValue = value as ExtendedKeycloakProfile;
 
         this.profileName = typedValue.username;
         this.profileJob = typedValue.attributes.job;
-        console.log(typedValue);
       });
     }
 
@@ -71,10 +66,6 @@ export class SidebarComponent {
     });
   }
 
-  toggleSidebar() {
-    this.sidebar?.nativeElement.classList.toggle("close");
-  }
-
   logout() {
     this.keycloak.logout(window.location.origin);
 
@@ -87,6 +78,4 @@ export class SidebarComponent {
   private fetchData():void{
     this.lections$ = this.httpService.GetLections();
   }
-
-  protected readonly isDevMode = isDevMode;
 }

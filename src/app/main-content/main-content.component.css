@@ -1,0 +1,14 @@
+.home-main-section {
+  position: relative;
+  top: 60px;
+  left: 260px;
+  width: calc(100% - 260px);
+  bottom: 0;
+  overflow-y: visible;
+  transition: all 0.5s ease;
+}
+
+.home-main-section.sidebar-closed{
+  left: 78px;
+  width: calc(100% - 78px);
+}

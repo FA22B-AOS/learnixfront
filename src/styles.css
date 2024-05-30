@@ -15,21 +15,21 @@
   --main-sidebar-font-color: #fff;
 }
 
-/*body {
+body {
   font-family: "Poppins","Stick No Bills", sans-serif;
   background-color: var(--main-background-color);
   color: var(--main-font-color);
-}*/
+}
 
 
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
-  background: #fff;
-  color: #2f3138;
-  font-family: "Open Sans", sans-serif;
-}
+/*body {*/
+/*  background: #fff;*/
+/*  color: #2f3138;*/
+/*  font-family: "Open Sans", sans-serif;*/
+/*}*/
 
 a {
   color: #f82249;
