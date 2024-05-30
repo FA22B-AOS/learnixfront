@@ -54,12 +54,12 @@
   background-color: #e0072f;
 }
 
-#pricing #buy-ticket-modal input,
-#pricing #buy-ticket-modal select {
+#pricing #pricing-model-modal input,
+#pricing #pricing-model-modal select {
   border-radius: 0;
 }
 
-#pricing #buy-ticket-modal .btn {
+#pricing #pricing-model-modal .btn {
   font-size: 15px;
   border-radius: 50px;
   padding: 10px 40px;
@@ -69,6 +69,6 @@
   color: #fff;
 }
 
-#pricing #buy-ticket-modal .btn:hover {
+#pricing #pricing-model-modal .btn:hover {
   background-color: #e0072f;
 }

@@ -252,18 +252,18 @@ export class HttpService {
     });
   }
 
+  createWorkspace(workspaceData: { title: string}): Observable<Workspace> {
+    return this.http.post<Workspace>(`${this.apiUrl}/workspaces`, workspaceData);
+  }
+
   public setPublicWorkspace(workspaceId: number, publicWorkspace: boolean) {
     const url = `${this.apiUrl}/workspaces/${workspaceId}/public?publicWorkspace=${publicWorkspace}`;
-    return this.http.post(url, {}, {
-      headers: new HttpHeaders().set('Content-Type', 'application/json')
-    });
+    return this.http.post(url, {}, {});
   }
 
   public setInviteOnly(workspaceId: number, inviteOnly: boolean){
     const url = `${this.apiUrl}/workspaces/${workspaceId}/invite-only?inviteOnly=${inviteOnly}`;
-    return this.http.post(url, {}, {
-      headers: new HttpHeaders().set('Content-Type', 'application/json')
-    });
+    return this.http.post(url, {}, {});
   }
 
   public requestAccessToWorkspace(workspace: Workspace, userId: string): Promise<WorkspaceJoinRequest> {

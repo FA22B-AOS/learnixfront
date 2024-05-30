@@ -1,4 +1,10 @@
-/* workspace-header.component.css */
+ .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+}
+
 .modal-backdrop.show {
   opacity: 0.5;
 }
@@ -14,3 +20,4 @@
 .dropdown-menu {
   z-index: 1055;
 }
+

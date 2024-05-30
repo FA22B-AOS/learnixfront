@@ -6,15 +6,15 @@ import {Observable} from "rxjs";
 import {WorkspaceJoinRequest} from "../../Models/WorkspaceJoinRequest";
 import {HttpService} from "../../Services/http.service";
 import {WorkspaceService} from "../../Services/workspace.service";
-
-
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-workspace-header',
   standalone: true,
   imports: [
     NgForOf,
-    AsyncPipe
+    AsyncPipe,
+    FormsModule
   ],
   templateUrl: './workspace-header.component.html',
   styleUrl: './workspace-header.component.css'
@@ -29,6 +29,7 @@ export class WorkspaceHeaderComponent {
   inviteOnly: boolean = false;
   publicWorkspace: boolean = false;
   @Input() searchbarOnly  = false;
+  newWorkspaceTitle: string = '';
 
   constructor(private httpService: HttpService, private workspaceService: WorkspaceService) {
   }
@@ -108,6 +109,24 @@ export class WorkspaceHeaderComponent {
 
   removeMod(moderatorId: string) {
     console.log("Reguest removed:", moderatorId);
+  }
+
+  createWorkspace(): void {
+    if (this.newWorkspaceTitle.trim()) {
+      // Implement your workspace creation logic here, for example:
+      this.httpService.createWorkspace({ title: this.newWorkspaceTitle }).subscribe(response => {
+        console.log('Workspace created:', response);
+        // Refresh the workspaces list
+        alert("Workspace: " + response.title + "created successfully.");
+      }, error => {
+        console.error('Error creating workspace:', error);
+        alert("Error creating workspace:" + error);
+      });
+      // Clear the input field after creating the workspace
+      this.newWorkspaceTitle = '';
+    } else {
+      alert('Please enter a title for the workspace.');
+    }
   }
 
 
