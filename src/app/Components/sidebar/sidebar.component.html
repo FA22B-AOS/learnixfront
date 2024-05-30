@@ -101,6 +101,19 @@
           <li><a class="link_name" routerLink="history">History</a></li>
         </ul>
       </li>
+      @if (keycloak.isUserInRole("admin"))
+      {
+        <li>
+          <a routerLink="admin">
+            <i class='bx bx-lock-open-alt'></i>
+            <span class="link_name">Admin Console</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" routerLink="admin">Admin</a></li>
+          </ul>
+        </li>
+      }
+
     </ul>
 <!--    @if(keycloak.isLoggedIn() || isDevMode()){-->
       <div class="profile-details">
