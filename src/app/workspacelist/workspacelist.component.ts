@@ -59,7 +59,8 @@ export class WorkspacelistComponent {
             memberWorkspaces = [];
           }
           return allWorkspaces.filter(workspace =>
-            !memberWorkspaces.some(memberWorkspace => memberWorkspace.workspaceId === workspace.workspaceId)
+            !memberWorkspaces.some(memberWorkspace => memberWorkspace.workspaceId === workspace.workspaceId) &&
+            workspace.ownerId !== this.UserGUID
           );
         })
       );
