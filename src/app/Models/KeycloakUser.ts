@@ -4,7 +4,6 @@ import {strings} from "@material/icon-button";
 export class KeycloakUser {
   constructor(
     public id : string,
-    public groups: string[],
     public username?: string,
     public firstName?: string,
     public lastName?: string,
@@ -25,6 +24,7 @@ export class KeycloakUser {
     public federatedIdentities?: string [],
     public realmRoles?: string [],
     public clientRoles?: string [],
+    public groups?: string[],
     public clientConsents?: string [],
     public notBefore?: number,
     public applicationRoles?: string[],

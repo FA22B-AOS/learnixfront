@@ -299,7 +299,7 @@ export class HttpService {
       ;
     })
   }
-  
+
   public GetUserInfo(userid: number): Promise<KeycloakUser[]>{
     const headers = new HttpHeaders();
     this.KeycloakService.addTokenToHeader(headers);
