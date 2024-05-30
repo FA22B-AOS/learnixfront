@@ -89,7 +89,4 @@ export class AdminConsoleComponent {
       })
     })
   }
-
-  //protected readonly KeycloakUser = KeycloakUser;
-  protected readonly alert = alert;
 }
