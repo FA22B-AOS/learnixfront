@@ -5,7 +5,6 @@ import {HttpService} from "../Services/http.service";
 import {KeycloakService} from "keycloak-angular";
 import {Workspace} from "../Models/Workspace";
 import {RouterLink} from "@angular/router";
-import {WorkspaceService} from "../Services/workspace.service";
 
 @Component({
   selector: 'app-workspacecard',
