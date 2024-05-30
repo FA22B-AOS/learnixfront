@@ -84,7 +84,9 @@ export class AdminConsoleComponent {
     }).then(result => {
       this._http.GetId(this.newUsername).then(result => {
         {
-          this._http.SetTempPass(result[0].id).then();
+          this._http.SetTempPass(result[0].id).then(done => {
+            this.GetAllUsers();
+          });
         }
       })
     })

@@ -2,10 +2,10 @@
   cursor: pointer;
 }
 
-table, th, td
+/*table, th, td
 {
   border:1px solid #dae9e6;
-}
+}*/
 
 input[type=text] {
   width: 130px;
