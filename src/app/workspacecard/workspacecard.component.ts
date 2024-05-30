@@ -24,7 +24,7 @@ export class WorkspacecardComponent {
   @Output() requestResult: EventEmitter<string> = new EventEmitter<string>();
 
 
-  constructor(private httpService: HttpService, private keycloak: KeycloakService, private workspaceService: WorkspaceService) {
+  constructor(private httpService: HttpService, private keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {

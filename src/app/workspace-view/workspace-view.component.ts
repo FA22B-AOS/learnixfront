@@ -5,7 +5,6 @@ import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.com
 import {WorkspaceService} from "../Services/workspace.service";
 import {HttpService} from "../Services/http.service";
 import {ActivatedRoute} from "@angular/router";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-workspace-view',

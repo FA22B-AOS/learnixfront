@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Workspace} from "../Models/Workspace";
 import {HttpService} from "../Services/http.service";
 import {AsyncPipe, NgForOf} from "@angular/common";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {WorkspaceService} from "../Services/workspace.service";
 import {WorkspaceJoinRequest} from "../Models/WorkspaceJoinRequest";
 
