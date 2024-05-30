@@ -7,11 +7,10 @@ import {authGuard} from "./auth.guard";
 import {LectionlistComponent} from "./Components/lectionlist/lectionlist.component";
 import {UserprofileComponent} from "./Components/userprofile/userprofile.component";
 import {WorkspacelistComponent} from "./workspacelist/workspacelist.component";
-import {WorkspaceViewComponent} from "./workspace-view/workspace-view.component";
 import {PrivacyPolicyComponent} from "./Components/privacy-policy/privacy-policy.component";
 import {TermsOfServiceComponent} from "./Components/terms-of-service/terms-of-service.component";
-import {SidebarComponent} from "./Components/sidebar/sidebar.component";
 import {MainViewComponent} from "./main-view/main-view.component";
+import {WorkspaceViewComponent} from "./workspace-view/workspace-view.component";
 
 export const routes: Routes = [
   { path: '', component: LandingpageComponent},
