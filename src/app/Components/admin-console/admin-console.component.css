@@ -1,0 +1,60 @@
+.button:hover{
+  cursor: pointer;
+}
+
+/*table, th, td
+{
+  border:1px solid #dae9e6;
+}*/
+
+input[type=text] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #cccccc;
+  border-radius: 15px;
+  text-align: left;
+  font-size: 12px;
+  background-color: #dae9e6;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 12px;
+  transition: width 0.4s ease-in-out;
+  margin: 2px 2px;
+}
+
+input[type=text]:focus {
+  width:30%;
+}
+
+.button2 {
+  background-color: #4a9e94;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+}
+
+
+float-parent-element {
+  width: 50%;
+}
+.float-child-element {
+  float: left;
+  width: 50%;
+}
+.one {
+  background-color: rgba(151, 219, 198, 0);
+  margin-left: 50%;
+  height: 100px;
+}
+.two {
+  margin-left: 50%;
+  height: 100px;
+  background-color: rgba(151, 219, 198, 0);
+}

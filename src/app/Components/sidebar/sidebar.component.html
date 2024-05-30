@@ -1,7 +1,7 @@
 <div class="sidebar" #sidebar>
   <div class="nav-container">
     <div class="logo-details">
-      <a routerLink="">
+      <a routerLink="learning">
         <i class="bx bxs-bolt-circle"></i>
         <span class="logo_name">LEARNIX</span>
       </a>
@@ -9,17 +9,17 @@
 
     <ul class="nav-links">
       <li>
-        <a routerLink="">
+        <a routerLink="dashboard">
           <i class="bx bx-grid-alt"></i>
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="">Dashboard</a></li>
+          <li><a class="link_name" routerLink="dashboard">Dashboard</a></li>
         </ul>
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="/lectionlist">
+          <a routerLink="lectionlist">
             <i class="bx bx-collection"></i>
             <span class="link_name">Lections</span>
           </a>
@@ -31,27 +31,27 @@
         <ul class="sub-menu">
           <li><a class="link_name" routerLink="lectionlist">Lections</a></li>
           <ng-container *ngFor="let lection of lections$ | async">
-            <li><a [routerLink]="['/lection/', lection.lectionId]">{{lection.title}}</a></li>
+            <li><a [routerLink]="['lection/', lection.lectionId]">{{lection.title}}</a></li>
           </ng-container>
         </ul>
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="">
+          <a routerLink="posts">
             <i class="bx bx-book-alt"></i>
             <span class="link_name">Posts</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="">Posts</a></li>
-          <li><a routerLink="">Web Design</a></li>
-          <li><a routerLink="">Login Form</a></li>
-          <li><a routerLink="">Card Design</a></li>
+          <li><a class="link_name" routerLink="posts">Posts</a></li>
+          <li><a routerLink="webdesign">Web Design</a></li>
+          <li><a routerLink="loginform">Login Form</a></li>
+          <li><a routerLink="carddesign">Card Design</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="">
+        <a routerLink="analytics">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Analytics</span>
         </a>
@@ -60,7 +60,7 @@
         </ul>
       </li>
       <li>
-        <a routerLink="">
+        <a routerLink="chart">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Chart</span>
         </a>
@@ -70,39 +70,52 @@
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="">
+          <a routerLink="plugins">
             <i class="bx bx-plug"></i>
             <span class="link_name">Plugins</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="">Plugins</a></li>
-          <li><a routerLink="">UI Face</a></li>
-          <li><a routerLink="">Pigments</a></li>
-          <li><a routerLink="">Box Icons</a></li>
+          <li><a class="link_name" routerLink="plugins">Plugins</a></li>
+          <li><a routerLink="uiface">UI Face</a></li>
+          <li><a routerLink="pigments">Pigments</a></li>
+          <li><a routerLink="boxicons">Box Icons</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="">
+        <a routerLink="explore">
           <i class="bx bx-compass"></i>
           <span class="link_name">Explore</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="">Explore</a></li>
+          <li><a class="link_name" routerLink="explore">Explore</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="">
+        <a routerLink="history">
           <i class="bx bx-history"></i>
           <span class="link_name">History</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="">History</a></li>
+          <li><a class="link_name" routerLink="history">History</a></li>
         </ul>
       </li>
+      @if (keycloak.isUserInRole("admin"))
+      {
+        <li>
+          <a routerLink="admin">
+            <i class='bx bx-lock-open-alt'></i>
+            <span class="link_name">Admin Console</span>
+          </a>
+          <ul class="sub-menu blank">
+            <li><a class="link_name" routerLink="admin">Admin</a></li>
+          </ul>
+        </li>
+      }
+
     </ul>
-    @if(keycloak.isLoggedIn() || isDevMode()){
+<!--    @if(keycloak.isLoggedIn() || isDevMode()){-->
       <div class="profile-details">
         <div class="icon-link">
           <a routerLink="">
@@ -119,24 +132,24 @@
         <ul class="sub-menu">
           <li><a class="link_name" routerLink="profile">Profile</a></li>
           <li><a routerLink="mylections">My Lections</a></li>
-          <li><a routerLink="">Settings</a></li>
+          <li><a routerLink="settings">Settings</a></li>
           <li class="logout" (click)="logout()">Logout</li>
         </ul>
       </div>
-    } @else {
-      <div class="profile-details login">
-        <div class="icon-link">
-          <a (click)="login()">
-            <div class="profile-content">
-              <i class="bx bx-log-in"></i>
-            </div>
-            <div class="name-job">
-              <div class="profile_name">Login</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    }
+<!--    } @else {-->
+<!--      <div class="profile-details login">-->
+<!--        <div class="icon-link">-->
+<!--          <a (click)="login()">-->
+<!--            <div class="profile-content">-->
+<!--              <i class="bx bx-log-in"></i>-->
+<!--            </div>-->
+<!--            <div class="name-job">-->
+<!--              <div class="profile_name">Login</div>-->
+<!--            </div>-->
+<!--          </a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    }-->
   </div>
 </div>
 <section class="home-section">
