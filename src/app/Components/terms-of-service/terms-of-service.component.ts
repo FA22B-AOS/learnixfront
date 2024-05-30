@@ -1,7 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import {HeaderComponent} from "../landingpage/Content/header/header.component";
 import {FooterComponent} from "../landingpage/Content/footer/footer.component";
-import {ScrollService} from "../../scroll.service";
+import {ScrollService} from "../../Services/scroll.service";
 
 @Component({
   selector: 'app-terms-of-service',

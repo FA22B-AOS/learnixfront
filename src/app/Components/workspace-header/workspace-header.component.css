@@ -1,0 +1,16 @@
+/* workspace-header.component.css */
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.modal-content {
+  z-index: 1055;
+}
+
+.modal-dialog {
+  z-index: 1055;
+}
+
+.dropdown-menu {
+  z-index: 1055;
+}
