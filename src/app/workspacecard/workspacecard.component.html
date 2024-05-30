@@ -4,13 +4,11 @@
       <h2>{{workspace.title}}</h2>
       <p> Members: {{workspace.memberCount}}</p>
 
-      <a (click)="requestAccess()" class="neon-button">
-        @if (member) {
-          Access
-        } @else {
-          Join
-        }
-      </a>
+      @if (member) {
+        <a [routerLink]="['/learning/workspaces', workspace.workspaceId]"  class="neon-button">Access</a>
+      } @else {
+        <a (click)="requestAccess()" class="neon-button">Join</a>
+      }
     </div>
   </div>
 </div>
