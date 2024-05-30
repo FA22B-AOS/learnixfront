@@ -1,31 +1,32 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {HttpService} from "../../../../Services/http.service";
 import {Quiz} from "../../../../Models/Quiz";
+import {QuizService} from "../../../../Services/quiz.service";
+import {KeycloakService} from "keycloak-angular";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @Component({
   selector: 'app-quiz',
   standalone: true,
   imports: [CommonModule],
+  providers: [QuizService],
   templateUrl: './quiz.component.html',
   styleUrl: './quiz.component.css'
 })
 export class QuizComponent implements OnInit {
   @Input() lectionId!: number | undefined;
-  quizzes: Quiz[] = [];
-  currentQuestionIndex: number = 0;
-  currentQuestion: Quiz | undefined;
+  protected quizzes: Quiz[] = [];
+  protected currentQuestionIndex: number = 0;
+  protected currentQuestion: Quiz | undefined;
   showResult: boolean = false;
   resultMessage: string = '';
-  userId: string = '123e4567-e89b-12d3-a456-426614174000'; // Beispiel UUID des Benutzers
-  score: number = 0;
 
-  constructor(private http: HttpService) {}
+  constructor(private quizService: QuizService, private kc: KeycloakService) {}
 
   ngOnInit(): void {
     if(this.lectionId !== undefined)
-      this.http.GetQuizzesByLectionId(this.lectionId).subscribe((quizzes) => {
+      this.quizService.GetByLectionId(this.lectionId).subscribe((quizzes) => {
         this.quizzes = quizzes;
         this.loadQuestion();
       });
@@ -39,8 +40,10 @@ export class QuizComponent implements OnInit {
   protected selectOption(index: number): void {
     if(this.showResult)
       return;
-    if (this.currentQuestion) {
-      this.http.submitQuizAnswer(this.currentQuestion.id, index, this.userId).subscribe((answer) => {
+
+    const userGUID: string | undefined = this.kc.getKeycloakInstance().subject;
+    if (this.currentQuestion && userGUID !== undefined) {
+      this.quizService.SubmitAnswer(this.currentQuestion.id, index, userGUID).subscribe((answer) => {
         const elements = Array.from(document.getElementsByClassName('quizBtn'));
 
         elements.forEach((element) => {

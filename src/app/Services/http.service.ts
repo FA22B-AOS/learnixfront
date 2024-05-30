@@ -5,16 +5,6 @@ import {Lection} from "../Models/Lection";
 import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {Quiz} from "../Models/Quiz";
-
-interface Answer {
-  id: number;
-  quizId: number;
-  selectedOption: number;
-  isCorrect: boolean;
-  userId: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -236,27 +226,4 @@ export class HttpService {
         });
     });
   }
-
-  public GetQuizzesByLectionId(lectionId: number): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>('http://localhost:8081/quizzes/lection/'+lectionId,{
-      headers: new HttpHeaders()
-        .set('Content-Type','application/json')
-    });
-  }
-
-  public submitQuizAnswer(quizId: number, selectedOption: number, userId: string): Observable<Answer> {
-    let body = {
-      quizId: quizId,
-      selectedOption: selectedOption,
-      userGUID: userId
-    }
-    return this.http.post<Answer>('http://localhost:8081/answers', body);
-  }
-
-  public GetTotalScore(lectionId: number, userId: string): Observable<number> {
-    return this.http.get<number>('http://localhost:8081/answers/'+lectionId+'/'+userId,);
-  }
-
-
-
 }
