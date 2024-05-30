@@ -6,6 +6,7 @@ import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
 import {Workspace} from "../Models/Workspace";
+import {WorkspaceJoinRequest} from "../Models/WorkspaceJoinRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -236,26 +237,74 @@ export class HttpService {
     });
   }
 
+  public getWorkspaceById(workspaceId: number): Observable<Workspace> {
+    return this.http.get<Workspace>(`${this.apiUrl}/workspaces/${workspaceId}`, {
+      headers: new HttpHeaders()
+        .set('Content-Type','application/json')
+    });
+  }
+
   public getMemberWorkspaces(): Observable<Workspace[]> {
     return this.http.get<Workspace[]>(`${this.apiUrl}/workspaces/member`, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
   }
 
-  setPublicWorkspace(workspaceId: number, publicWorkspace: boolean): Observable<any> {
+  public setPublicWorkspace(workspaceId: number, publicWorkspace: boolean) {
     const url = `${this.apiUrl}/workspaces/${workspaceId}/public?publicWorkspace=${publicWorkspace}`;
-    return this.http.put(url, {}, {
+    return this.http.post(url, {}, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
   }
 
-  setInviteOnly(workspaceId: number, inviteOnly: boolean): Observable<any> {
+  public setInviteOnly(workspaceId: number, inviteOnly: boolean){
     const url = `${this.apiUrl}/workspaces/${workspaceId}/invite-only?inviteOnly=${inviteOnly}`;
-    return this.http.put(url, {}, {
+    return this.http.post(url, {}, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
   }
 
+  public requestAccessToWorkspace(workspace: Workspace, userId: string): Promise<WorkspaceJoinRequest> {
+    const url = `${this.apiUrl}/workspaces/join-request`;
+    const body = {
+      workspaceId: workspace.workspaceId,
+      requesterUserId: userId
+    };
 
+    return new Promise((resolve, reject) => {
+      this.http.post<WorkspaceJoinRequest>(url, body, {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }).subscribe({
+        next: (response) => {
+          resolve(response);
+        },
+        error: (error) => {
+          console.error(error);
+          reject(error);
+        }
+      });
+    });
+  }
 
+  public getWorkspaceJoinRequests(workspaceId: number): Observable<WorkspaceJoinRequest[]> {
+    return this.http.get<WorkspaceJoinRequest[]>(`${this.apiUrl}/workspaces/join-request/requestByWorkspaceId?workspaceId=${workspaceId}`, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    });
+  }
+
+  public acceptWorkspaceJoinRequest(requestId: number): Promise<void> {
+    const url = `${this.apiUrl}/workspaces/join-request/${requestId}/accept`;
+
+    return new Promise((resolve, reject) => {
+      this.http.post(url, {}).subscribe({
+        next: () => {
+          resolve();
+        },
+        error: (error) => {
+          console.error(error);
+          reject(error);
+        }
+      });
+    });
+  }
 }
