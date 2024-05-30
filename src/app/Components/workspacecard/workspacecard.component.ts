@@ -1,10 +1,13 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {ProgressChartComponent} from "../Components/progress-chart/progress-chart.component";
-import {HttpService} from "../Services/http.service";
+
+
 import {KeycloakService} from "keycloak-angular";
-import {Workspace} from "../Models/Workspace";
+
 import {RouterLink} from "@angular/router";
+import {ProgressChartComponent} from "../progress-chart/progress-chart.component";
+import {Workspace} from "../../Models/Workspace";
+import {HttpService} from "../../Services/http.service";
 
 @Component({
   selector: 'app-workspacecard',

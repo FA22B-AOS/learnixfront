@@ -1,10 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {Workspace} from "../Models/Workspace";
-import {HttpService} from "../Services/http.service";
+import {Workspace} from "../../Models/Workspace";
+
 import {AsyncPipe, NgForOf} from "@angular/common";
 import {Observable} from "rxjs";
-import {WorkspaceService} from "../Services/workspace.service";
-import {WorkspaceJoinRequest} from "../Models/WorkspaceJoinRequest";
+import {WorkspaceJoinRequest} from "../../Models/WorkspaceJoinRequest";
+import {HttpService} from "../../Services/http.service";
+import {WorkspaceService} from "../../Services/workspace.service";
+
+
 
 @Component({
   selector: 'app-workspace-header',

@@ -15,7 +15,7 @@ import {FaqComponent} from "./Content/faq/faq.component";
 import {SupportersComponent} from "./Content/supporters/supporters.component";
 import {GalleryComponent} from "./Content/gallery/gallery.component";
 import {RoadmapComponent} from "./Content/roadmap/roadmap.component";
-import {ScrollService} from "../../scroll.service";
+import {ScrollService} from "../../Services/scroll.service";
 
 @Component({
   selector: 'app-landingpage',

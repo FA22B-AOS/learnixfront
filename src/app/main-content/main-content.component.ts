@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RouterOutlet} from "@angular/router";
-import {SidebarService} from "../sidebar-service.service";
+import {SidebarService} from "../Services/sidebar-service.service";
 import {CommonModule} from "@angular/common";
 
 @Component({

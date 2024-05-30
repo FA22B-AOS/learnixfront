@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {Workspace} from "../Models/Workspace";
 import {KeycloakService} from "keycloak-angular";
 import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
-import {WorkspaceService} from "../Services/workspace.service";
-import {HttpService} from "../Services/http.service";
 import {ActivatedRoute} from "@angular/router";
+import {Workspace} from "../../Models/Workspace";
+import {WorkspaceService} from "../../Services/workspace.service";
+import {HttpService} from "../../Services/http.service";
 
 @Component({
   selector: 'app-workspace-view',

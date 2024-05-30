@@ -3,13 +3,16 @@ import {WorkspacecardComponent} from "../workspacecard/workspacecard.component";
 import {forkJoin, map, Observable, of} from "rxjs";
 import {Router} from "@angular/router";
 import {KeycloakService} from "keycloak-angular";
-import {Workspace} from "../Models/Workspace";
+
 import {CommonModule} from "@angular/common";
-import {HttpService} from "../Services/http.service";
+
 import {HttpClientModule} from "@angular/common/http";
-import {HeaderComponent} from "../Components/landingpage/Content/header/header.component";
+
 import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
-import {WorkspaceService} from "../Services/workspace.service";
+import {HeaderComponent} from "../landingpage/Content/header/header.component";
+import {Workspace} from "../../Models/Workspace";
+import {HttpService} from "../../Services/http.service";
+import {WorkspaceService} from "../../Services/workspace.service";
 
 @Component({
   selector: 'app-workspacelist',
