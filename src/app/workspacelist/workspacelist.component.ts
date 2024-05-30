@@ -9,6 +9,7 @@ import {HttpService} from "../Services/http.service";
 import {HttpClientModule} from "@angular/common/http";
 import {HeaderComponent} from "../Components/landingpage/Content/header/header.component";
 import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
+import {WorkspaceService} from "../Services/workspace.service";
 
 @Component({
   selector: 'app-workspacelist',
@@ -29,14 +30,19 @@ export class WorkspacelistComponent {
   protected nonMemberWorkspaces$: Observable<Workspace[]>;
   protected privateList: boolean = false;
   private readonly UserGUID: string | undefined;
+  requestStatus: string | null = null;
 
-  constructor(private httpService: HttpService, private router: Router, private keycloak: KeycloakService) {
+  constructor(private httpService: HttpService, private router: Router, private keycloak: KeycloakService, private workspaceService: WorkspaceService) {
     this.workspaces$ = of([]);
     this.myWorkspaces$ = of([]);
     this.nonMemberWorkspaces$ = of ([]);
     this.privateList = this.router.url === '/myworkspaces';
     this.UserGUID = this.keycloak.getKeycloakInstance().subject;
     this.fetchData();
+  }
+
+  ngOnInit(): void {
+    this.workspaceService.resetWorkspace();
   }
 
   private fetchData(): void {
@@ -60,6 +66,10 @@ export class WorkspacelistComponent {
     } else {
       this.nonMemberWorkspaces$ = this.httpService.getAllWorkspaces();
     }
+  }
+
+  handleRequestResult(status: string) {
+    this.requestStatus = status;
   }
 }
 

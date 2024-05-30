@@ -1,7 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {Workspace} from "../Models/Workspace";
 import {KeycloakService} from "keycloak-angular";
 import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.component";
+import {WorkspaceService} from "../Services/workspace.service";
+import {HttpService} from "../Services/http.service";
+import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-workspace-view',
@@ -13,11 +17,23 @@ import {WorkspaceHeaderComponent} from "../workspace-header/workspace-header.com
   styleUrl: './workspace-view.component.css'
 })
 export class WorkspaceViewComponent {
-  @Input() workspace: Workspace | undefined;
+  workspace: Workspace | undefined;
   protected owner: boolean = false;
 
-  constructor(private keycloakService: KeycloakService) {
-    this.checkOwnership();
+  constructor(private keycloakService: KeycloakService, private workspaceService: WorkspaceService, private http: HttpService, private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    const workspaceId = this.route.snapshot.paramMap.get('workspaceId');
+    if (workspaceId) {
+      this.loadWorkspace(Number(workspaceId));
+    }
+
+    this.workspaceService.getWorkspace().subscribe(workspace => {
+      console.log("WorkspaceView", workspace);
+      this.workspace = workspace;
+      this.checkOwnership();
+    });
   }
 
 
@@ -26,5 +42,19 @@ export class WorkspaceViewComponent {
     if (this.workspace && userId) {
       this.owner = this.workspace.ownerId === userId;
     }
+  }
+
+  loadWorkspace(workspaceId: number): void {
+    console.log("loading workspace", workspaceId);
+    this.http.getWorkspaceById(workspaceId).subscribe(
+      (workspace) => {
+        this.workspaceService.setWorkspace(workspace);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+    this.workspaceService.getWorkspace();
   }
 }

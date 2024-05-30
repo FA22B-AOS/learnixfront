@@ -1,4 +1,13 @@
 <app-workspace-header [searchbarOnly]="true"></app-workspace-header>
+<div class="container mt-3">
+  <div *ngIf="requestStatus === 'success'" class="alert alert-success" role="alert">
+    Request submitted successfully
+  </div>
+  <div *ngIf="requestStatus?.startsWith('error')" class="alert alert-danger" role="alert">
+    {{ requestStatus }}
+  </div>
+</div>
+
 <div class="container pt-3">
   <ng-container *ngIf="(myWorkspaces$ | async)?.length">
     <div class="row m-0">
@@ -24,7 +33,7 @@
   <div class="row m-0">
     <ng-container *ngFor="let workspace of nonMemberWorkspaces$ | async">
       <div class="col-xs-4 col-lg-3">
-        <app-workspacecard [workspace]="workspace" [member]="false"></app-workspacecard>
+        <app-workspacecard [workspace]="workspace" [member]="false" (requestResult)="handleRequestResult($event)"></app-workspacecard>
       </div>
     </ng-container>
   </div>
