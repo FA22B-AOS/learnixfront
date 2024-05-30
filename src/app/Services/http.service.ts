@@ -1,11 +1,10 @@
-import {inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Lection} from "../Models/Lection";
 import {Chapter} from "../Models/Chapter";
 import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
-import {error} from "@angular/compiler-cli/src/transformers/util";
 import {KeycloakService} from "keycloak-angular";
 import {KeycloakUser} from "../Models/KeycloakUser";
 import {Workspace} from "../Models/Workspace";
@@ -310,6 +309,23 @@ export class HttpService {
       });
     });
   }
+
+  public denyWorkspaceJoinRequest(requestId: number): Promise<void> {
+    const url = `${this.apiUrl}/workspaces/join-request/${requestId}/deny`;
+
+    return new Promise((resolve, reject) => {
+      this.http.post(url, {}).subscribe({
+        next: () => {
+          resolve();
+        },
+        error: (error) => {
+          console.error(error);
+          reject(error);
+        }
+      });
+    });
+  }
+
   public GetKeycloakUsers(): Promise<KeycloakUser[]>{
     const headers = new HttpHeaders();
     this.KeycloakService.addTokenToHeader(headers);

@@ -20,6 +20,7 @@ export class WorkspaceHeaderComponent {
   members: string[] | undefined;
   moderators: string[] | undefined;
   requests: Observable<WorkspaceJoinRequest[]> | undefined;
+  currentRequests: WorkspaceJoinRequest[] = [];
   @Input() owner: boolean = false;
   workspace:  Workspace | undefined;
   inviteOnly: boolean = false;
@@ -37,10 +38,11 @@ export class WorkspaceHeaderComponent {
         this.fillModeratorList();
         this.fillMemberList();
         this.requests = this.httpService.getWorkspaceJoinRequests(this.workspace.workspaceId);
+        this.requests.subscribe(requests => {
+          this.currentRequests = requests;
+        });
         console.log(this.requests);
       }
-
-
     });
   }
 
@@ -83,15 +85,22 @@ export class WorkspaceHeaderComponent {
         if (this.workspace) {
           this.workspace.memberIds.push(requesterId);
         }
+        this.currentRequests = this.currentRequests.filter(request => request.requestId !== requestId);
       }
     ).catch(error => {
       console.error("Error accepting request:", error);
-      // Handle error if needed
     });
   }
 
   denyRequest(requestId: number) {
     console.log("Reguest denied:", requestId);
+    this.httpService.denyWorkspaceJoinRequest(requestId).then(
+      () => {
+        this.currentRequests = this.currentRequests.filter(request => request.requestId !== requestId);
+      }
+    ).catch(error => {
+      console.error("Error accepting request:", error);
+    });
   }
 
   removeMod(moderatorId: string) {
