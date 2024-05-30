@@ -24,13 +24,15 @@
 
   <!-- Dialog für neue Lektion -->
   <div *ngIf="isDialogOpen" class="modal-backdrop">
-    <div class="modal-content">
-      <h3>Neue Lektion hinzufügen</h3>
-      <input type="text" [(ngModel)]="newLectionName" placeholder="Name der Lektion" />
-      <textarea [(ngModel)]="newLectionDescription" rows="3" placeholder="Beschreibung der Lektion"></textarea>
-      <button (click)="addNewLection()">Hinzufügen</button>
-      <button (click)="closeDialog()">Abbrechen</button>
+      <div class="modal-content">
+        <h3>Neue Lektion hinzufügen</h3>
+        <input type="text" [(ngModel)]="newLectionName" placeholder="Name der Lektion" />
+        <textarea [(ngModel)]="newLectionDescription" rows="3" placeholder="Beschreibung der Lektion"></textarea>
+        <div>
+          <button type="button" class="btn btn-primary" (click)="addNewLection()">Hinzufügen</button>
+          <button type="button" class="btn btn-danger" (click)="closeDialog()">Abbrechen</button>
+        </div>
+      </div>
     </div>
-  </div>
 </div>
 

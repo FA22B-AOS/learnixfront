@@ -2,10 +2,31 @@
   text-align: center;
   margin: 20px;
 }
-.options button {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 16px;
+
+.quizBtn {
+  color: white;
+  background: cornflowerblue;
+  min-width: 25%;
+}
+
+.btnIncorrect{
+  min-width: 25%;
+  color: white;
+  background: red;
+}
+
+.btnCorrect{
+  min-width: 25%;
+  color: white;
+  background: lightgreen;
+}
+
+.btnDisabled{
+  min-width: 25%;
+  color: white;
+  background: gray;
+}
+
+.quizBtn:hover{
+  background: lime;
 }

@@ -7,7 +7,14 @@ import {ChapterContent} from "../Models/ChapterContent";
 import {LectionProgress} from "../Models/LectionProgress";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {Quiz} from "../Models/Quiz";
-import {Answer} from "../Models/Answer";
+
+interface Answer {
+  id: number;
+  quizId: number;
+  selectedOption: number;
+  isCorrect: boolean;
+  userId: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -237,8 +244,13 @@ export class HttpService {
     });
   }
 
-  public SubmitAnswer(quizId: number, selectedOption: number, userId: string): Observable<Answer> {
-    return this.http.post<Answer>('http://localhost:8081/answers', { quizId, selectedOption, userId });
+  public submitQuizAnswer(quizId: number, selectedOption: number, userId: string): Observable<Answer> {
+    let body = {
+      quizId: quizId,
+      selectedOption: selectedOption,
+      userGUID: userId
+    }
+    return this.http.post<Answer>('http://localhost:8081/answers', body);
   }
 
   public GetTotalScore(lectionId: number, userId: string): Observable<number> {

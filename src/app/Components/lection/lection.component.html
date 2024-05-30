@@ -1,34 +1,46 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a *ngIf="editMode" class="navbar-brand">EditMode</a>
-  <a *ngIf="!editMode" class="navbar-brand">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li *ngIf="editMode" class="nav-item">
-        <button type="button" class="btn btn-danger" (click)="deleteLection()"><i class="bi bi-trash3-fill"></i></button>
-      </li>
-      <li *ngIf="editMode" class="nav-item">
-        <button type="button" class="btn btn-primary" (click)="openNewChapterDialog()">Chapter <i class="bi bi-plus-circle-fill"></i></button>
-      </li>
-      <li *ngFor="let chapter of chapters$ | async" class="nav-item">
-        <a class="nav-link" (click)="this.selectChapter(chapter.chapterId)">{{chapter.chapterName}}</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a *ngIf="editMode" class="navbar-brand">EditMode</a>
+    <a *ngIf="!editMode" class="navbar-brand">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngIf="editMode" class="nav-item">
+          <button type="button" class="btn btn-danger" (click)="deleteLection()"><i class="bi bi-trash3-fill"></i></button>
+        </li>
+        <li *ngIf="editMode" class="nav-item">
+          <button type="button" class="btn btn-primary" (click)="openNewChapterDialog()">Chapter <i class="bi bi-plus-circle-fill"></i></button>
+        </li>
+        <li *ngFor="let chapter of chapters$ | async" class="nav-item">
+          <a class="nav-link" (click)="this.selectChapter(chapter.chapterId)">{{chapter.chapterName}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="this.startQuiz()">Take Quiz</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<h1>{{this.lection?.title}}</h1>
+  <h1>{{this.lection?.title}}</h1>
 
-<app-chapter [ngClass]="{'invisible': selectedChapterId !== chapter.chapterId}" *ngFor="let chapter of chapters$ | async" [chapter]="chapter" [editMode]="editMode"></app-chapter>
+  <ng-container *ngIf="!this.quizMode">
+    <app-chapter [ngClass]="{'invisible': selectedChapterId !== chapter.chapterId}" *ngFor="let chapter of chapters$ | async" [chapter]="chapter" [editMode]="editMode"></app-chapter>
+  </ng-container>
 
-<!-- Dialog für neun Chapter -->
-<div *ngIf="isDialogOpen" class="modal-backdrop">
-  <div class="modal-content">
-    <h3>Neues Kapitel hinzufügen</h3>
-    <input type="text" [(ngModel)]="newChapterName" placeholder="Name des Kapitel" />
-    <button (click)="addNewChapter()">Hinzufügen</button>
-    <button (click)="closeDialog()">Abbrechen</button>
+  <ng-container *ngIf="quizMode">
+    <app-quiz [lectionId]="this.lection?.lectionId"></app-quiz>
+  </ng-container>
+
+
+  <!-- Dialog für neun Chapter -->
+  <div *ngIf="isDialogOpen" class="modal-backdrop">
+    <div class="modal-content">
+      <h3>Neues Kapitel hinzufügen</h3>
+      <input type="text" [(ngModel)]="newChapterName" placeholder="Name des Kapitel" />
+      <button type="button" class="btn btn-primary" (click)="addNewChapter()">Hinzufügen</button>
+      <button type="button" class="btn btn-danger" (click)="closeDialog()">Abbrechen</button>
+    </div>
   </div>
 </div>

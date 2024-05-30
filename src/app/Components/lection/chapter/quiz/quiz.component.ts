@@ -12,6 +12,7 @@ import {Quiz} from "../../../../Models/Quiz";
   styleUrl: './quiz.component.css'
 })
 export class QuizComponent implements OnInit {
+  @Input() lectionId!: number | undefined;
   quizzes: Quiz[] = [];
   currentQuestionIndex: number = 0;
   currentQuestion: Quiz | undefined;
@@ -23,37 +24,48 @@ export class QuizComponent implements OnInit {
   constructor(private http: HttpService) {}
 
   ngOnInit(): void {
-    const lectionId = 1; // Beispiel Lection ID
-    this.http.GetQuizzesByLectionId(lectionId).subscribe((quizzes) => {
-      this.quizzes = quizzes;
-      //this.loadQuestion();
-    });
-
-    //this.quizService.getTotalScore(this.userId).subscribe((score) => {
-    //  this.score = score;
-    //});
+    if(this.lectionId !== undefined)
+      this.http.GetQuizzesByLectionId(this.lectionId).subscribe((quizzes) => {
+        this.quizzes = quizzes;
+        this.loadQuestion();
+      });
   }
 
-  loadQuestion(): void {
+  protected loadQuestion(): void {
     this.currentQuestion = this.quizzes[this.currentQuestionIndex];
     this.showResult = false;
   }
 
-  /*selectOption(index: number): void {
+  protected selectOption(index: number): void {
+    if(this.showResult)
+      return;
     if (this.currentQuestion) {
-      this.quizService.submitAnswer(this.currentQuestion.id, index, this.userId).subscribe((answer) => {
-        if (answer.isCorrect) {
-          this.resultMessage = 'Correct!';
-          this.score++;
-        } else {
-          this.resultMessage = 'Incorrect!';
-        }
+      this.http.submitQuizAnswer(this.currentQuestion.id, index, this.userId).subscribe((answer) => {
+        const elements = Array.from(document.getElementsByClassName('quizBtn'));
+
+        elements.forEach((element) => {
+          const htmlElement = element as HTMLElement;
+          htmlElement.classList.remove('quizBtn');
+          if((htmlElement.id == 'btn'+index) && answer.isCorrect)
+            htmlElement.classList.add('btnCorrect')
+          else if (htmlElement.id == 'btn'+index)
+            htmlElement.classList.add('btnIncorrect')
+          else
+            htmlElement.classList.add('btnDisabled');
+        });
+
+        if (answer.isCorrect)
+          this.resultMessage = 'Richtig!'
+        else
+          this.resultMessage = 'Leider falsch!';
+
         this.showResult = true;
       });
     }
-  }*/
+  }
 
-  nextQuestion(): void {
+
+  protected nextQuestion(): void {
     this.currentQuestionIndex++;
     if (this.currentQuestionIndex < this.quizzes.length) {
       this.loadQuestion();

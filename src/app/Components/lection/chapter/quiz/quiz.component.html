@@ -1,12 +1,15 @@
 <div class="quiz-container">
   <h2>{{ currentQuestion?.question }}</h2>
-  <div class="options">
-    <!--<button *ngFor="let option of currentQuestion?.options; let i = index" (click)="selectOption(i)">
-      {{ option }}
-    </button>-->
+  <div class="row">
+    <div class="col-6 mb-1" *ngFor="let option of currentQuestion?.options; let i = index" (click)="selectOption(i)">
+      <div *ngIf="i == 2" class="w-100"></div>
+      <button id="btn{{i}}" class="btn quizBtn">
+        {{ option }}
+      </button>
+    </div>
   </div>
   <div *ngIf="showResult">
     <p>{{ resultMessage }}</p>
-    <button (click)="nextQuestion()">Next Question</button>
+    <button class="btn btn-primary" (click)="nextQuestion()">Nächste Frage</button>
   </div>
 </div>

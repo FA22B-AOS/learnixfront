@@ -20,11 +20,11 @@
       <thead>
       <tr>
         <th *ngFor="let header of edtHeaders; let i = index; trackBy: trackByIndex">
-          <button (click)="removeColumn(i)">Spalte entfernen</button>
+          <button class="btn btn-danger" (click)="removeColumn(i)">Spalte entfernen</button>
           <input [value]="header" (input)="updateHeader(i, $event)" />
         </th>
         <th>
-          <button (click)="addColumn()">Spalte hinzufügen</button>
+          <button class="btn btn-primary" (click)="addColumn()">Spalte hinzufügen</button>
         </th>
       </tr>
       </thead>
@@ -34,13 +34,13 @@
           <input [value]="cell" (input)="updateCell(rowIndex, colIndex, $event)" />
         </td>
         <td>
-          <button (click)="removeRow(rowIndex)">Reihe entfernen</button>
+          <button class="btn btn-danger" (click)="removeRow(rowIndex)">Reihe entfernen</button>
         </td>
       </tr>
       <tr>
         <td *ngFor="let header of edtHeaders"></td>
         <td>
-          <button (click)="addRow()">Reihe hinzufügen</button>
+          <button class="btn btn-primary" (click)="addRow()">Reihe hinzufügen</button>
         </td>
       </tr>
       </tbody>
