@@ -8,14 +8,14 @@
   --p:20;
   --b:22px;
   --c:darkred;
-  --w:100px;
+  --w:70px;
 
   width:var(--w);
   aspect-ratio:1;
   position:relative;
   display:inline-grid;
   margin-top:5px;
-  margin-bottom:25px;
+  margin-bottom:10px;
   place-content:center;
   font-size:25px;
   font-weight:bold;

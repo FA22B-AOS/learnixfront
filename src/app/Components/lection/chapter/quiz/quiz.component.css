@@ -1,0 +1,32 @@
+.quiz-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.quizBtn {
+  color: white;
+  background: cornflowerblue;
+  min-width: 25%;
+}
+
+.btnIncorrect{
+  min-width: 25%;
+  color: white;
+  background: red;
+}
+
+.btnCorrect{
+  min-width: 25%;
+  color: white;
+  background: lightgreen;
+}
+
+.btnDisabled{
+  min-width: 25%;
+  color: white;
+  background: gray;
+}
+
+.quizBtn:hover{
+  background: lime;
+}

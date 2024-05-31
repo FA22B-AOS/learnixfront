@@ -9,11 +9,12 @@ import {Chapter} from "../../Models/Chapter";
 import {ChapterComponent} from "./chapter/chapter.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {KeycloakService} from "keycloak-angular";
+import {QuizComponent} from "./chapter/quiz/quiz.component";
 
 @Component({
   selector: 'app-lection',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, ChapterComponent, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, HttpClientModule, ChapterComponent, ReactiveFormsModule, FormsModule, QuizComponent],
   providers: [HttpService],
   templateUrl: './lection.component.html',
   styleUrl: './lection.component.css'
@@ -26,6 +27,8 @@ export class LectionComponent {
   protected chapters$: Observable<Chapter[]>;
   protected isDialogOpen: boolean = false;
   protected newChapterName = '';
+  protected quizMode: boolean = false;
+  protected quizAviable: boolean = false;
 
 
   constructor(private route: ActivatedRoute,
@@ -54,6 +57,7 @@ export class LectionComponent {
   }
 
   protected selectChapter(chapterId:number){
+    this.quizMode = false;
     this.selectedChapterId = chapterId;
   }
 
@@ -79,6 +83,10 @@ export class LectionComponent {
       this.http.DeleteLection(this.lection.lectionId).subscribe(value => {
         this.router.navigateByUrl('/mylections');
       })
+  }
+
+  protected startQuiz():void{
+   this.quizMode = true;
   }
 
 }

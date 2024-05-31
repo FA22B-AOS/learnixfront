@@ -6,7 +6,7 @@ import {PageNotFoundComponent} from "./Components/page-not-found/page-not-found.
 import {authGuard, authGuardAdmin} from "./auth.guard";
 import {LectionlistComponent} from "./Components/lectionlist/lectionlist.component";
 import {UserprofileComponent} from "./Components/userprofile/userprofile.component";
-
+import {PedroComponent} from "./Components/pedro/pedro.component";
 import {AdminConsoleComponent} from "./Components/admin-console/admin-console.component";
 import {PrivacyPolicyComponent} from "./Components/privacy-policy/privacy-policy.component";
 import {TermsOfServiceComponent} from "./Components/terms-of-service/terms-of-service.component";
@@ -34,5 +34,6 @@ export const routes: Routes = [
   },
   { path: 'privacy-policy', component: PrivacyPolicyComponent},
   { path: 'terms-of-service', component: TermsOfServiceComponent},
+  { path: 'pedro', component: PedroComponent},
   { path: '**', component: PageNotFoundComponent},
 ];

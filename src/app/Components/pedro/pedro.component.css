@@ -1,0 +1,45 @@
+.cont {
+  background: #161616;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-content: center center;
+}
+
+.spinner {
+  background: #f6dad8;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 30vw;
+  aspect-ratio: 1;
+  animation: rotate 6s linear infinite;
+}
+
+img {
+  display: block;
+  width: 100%;
+  position: relative;
+  top: 20%;
+  animation: dance .2s linear infinite alternate;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+
+  }
+  to{
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes dance {
+  from {
+    transform: translateY(-10%);
+  }
+
+  to {
+    transform: translateY(5%);
+  }
+}
