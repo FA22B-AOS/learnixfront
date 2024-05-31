@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'app-pricing',
@@ -8,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrl: './pricing.component.css'
 })
 export class PricingComponent {
+
+  constructor(private keycloakService: KeycloakService) {
+  }
+
+  login(){
+    this.keycloakService.login();
+  }
 
 }
