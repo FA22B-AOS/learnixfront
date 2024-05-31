@@ -9,12 +9,12 @@
 
     <ul class="nav-links">
       <li>
-        <a routerLink="dashboard">
+        <a routerLink="/learning">
           <i class="bx bx-grid-alt"></i>
           <span class="link_name">Dashboard</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="dashboard">Dashboard</a></li>
+          <li><a class="link_name" routerLink="/learning">Dashboard</a></li>
         </ul>
       </li>
       <li>
@@ -37,47 +37,47 @@
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="posts">
+          <a routerLink="/learning">
             <i class="bx bx-book-alt"></i>
             <span class="link_name">Posts</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="posts">Posts</a></li>
-          <li><a routerLink="webdesign">Web Design</a></li>
-          <li><a routerLink="loginform">Login Form</a></li>
-          <li><a routerLink="carddesign">Card Design</a></li>
+          <li><a class="link_name" routerLink="/learning">Posts</a></li>
+          <li><a routerLink="/learning">Web Design</a></li>
+          <li><a routerLink="/learning">Login Form</a></li>
+          <li><a routerLink="/learning">Card Design</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="analytics">
+        <a routerLink="/learning">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Analytics</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="analytics">Analytics</a></li>
+          <li><a class="link_name" routerLink="/learning">Analytics</a></li>
         </ul>
       </li>
       <li>
-        <a routerLink="chart">
+        <a routerLink="/learning">
           <i class="bx bx-pie-chart-alt-2"></i>
           <span class="link_name">Chart</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="chart">Chart</a></li>
+          <li><a class="link_name" routerLink="/learning">Chart</a></li>
         </ul>
       </li>
       <li>
         <div class="icon-link">
-          <a routerLink="plugins">
+          <a routerLink="/learning">
             <i class="bx bx-plug"></i>
             <span class="link_name">Plugins</span>
           </a>
           <i class="bx bxs-chevron-down arrow" #arrow></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="plugins">Plugins</a></li>
+          <li><a class="link_name" routerLink="/learning">Plugins</a></li>
           <li><a routerLink="uiface">UI Face</a></li>
           <li><a routerLink="pigments">Pigments</a></li>
           <li><a routerLink="boxicons">Box Icons</a></li>
@@ -93,12 +93,12 @@
         </ul>
       </li>
       <li>
-        <a routerLink="history">
+        <a routerLink="/learning">
           <i class="bx bx-history"></i>
           <span class="link_name">History</span>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" routerLink="history">History</a></li>
+          <li><a class="link_name" routerLink="/learning">History</a></li>
         </ul>
       </li>
       @if (keycloak.isUserInRole("admin"))
@@ -118,7 +118,7 @@
 <!--    @if(keycloak.isLoggedIn() || isDevMode()){-->
       <div class="profile-details">
         <div class="icon-link">
-          <a routerLink="profile">
+          <a routerLink="/learning">
             <div class="profile-content">
               <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&q=70&fm=webp" alt="profile">
             </div>
@@ -130,9 +130,9 @@
           <i class="bx bxs-chevron-down arrow" #arrow></i>
       </div>
         <ul class="sub-menu">
-          <li><a class="link_name" routerLink="profile">Profile</a></li>
+          <li><a class="link_name" routerLink="/learning">Profile</a></li>
           <li><a routerLink="mylections">My Lections</a></li>
-          <li><a routerLink="settings">Settings</a></li>
+          <li><a routerLink="/learning">Settings</a></li>
           <li class="logout" (click)="logout()">Logout</li>
         </ul>
       </div>
