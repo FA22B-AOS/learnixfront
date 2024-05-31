@@ -1,4 +1,4 @@
-<app-workspace-header [searchbarOnly]="true"></app-workspace-header>
+<app-workspace-header [searchbarOnly]="true" (workspaceCreated)="handleCreateWorkspace()"></app-workspace-header>
 <div class="container mt-3">
   <div *ngIf="requestStatus === 'success'" class="alert alert-success" role="alert">
     Request submitted successfully

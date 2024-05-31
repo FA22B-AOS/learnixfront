@@ -56,14 +56,30 @@ export class WorkspacelistComponent {
 
       this.workspaces$ = this.httpService.getAllWorkspaces();
 
-      this.nonMemberWorkspaces$ = forkJoin([this.workspaces$, this.myWorkspaces$]).pipe(
+      console.log("All received workspaces: ", this.workspaces$.subscribe(nextWorkspaces => {
+        console.log(nextWorkspaces);}));
+
+      this.myWorkspaces$ = forkJoin([this.workspaces$, this.myWorkspaces$]).pipe(
         map(([allWorkspaces, memberWorkspaces]) => {
           if (!memberWorkspaces) {
             memberWorkspaces = [];
           }
+          const ownerWorkspaces = allWorkspaces.filter(workspace => workspace.ownerId === this.UserGUID);
+          return [...memberWorkspaces, ...ownerWorkspaces];
+        })
+      );
+
+      this.myWorkspaces$.subscribe(myWorkspaces => {console.log("My Workspaces",myWorkspaces);});
+
+      this.nonMemberWorkspaces$ = forkJoin([this.workspaces$, this.myWorkspaces$]).pipe(
+        map(([allWorkspaces, memberWorkspaces]) => {
+          console.log("ForkJoin All", allWorkspaces);
+          console.log("ForkJoin member", memberWorkspaces);
+          if (!memberWorkspaces) {
+            memberWorkspaces = [];
+          }
           return allWorkspaces.filter(workspace =>
-            !memberWorkspaces.some(memberWorkspace => memberWorkspace.workspaceId === workspace.workspaceId) &&
-            workspace.ownerId !== this.UserGUID
+            !memberWorkspaces.some(memberWorkspace => memberWorkspace.workspaceId === workspace.workspaceId)
           );
         })
       );
@@ -74,6 +90,10 @@ export class WorkspacelistComponent {
 
   handleRequestResult(status: string) {
     this.requestStatus = status;
+  }
+
+  handleCreateWorkspace() {
+    this.fetchData();
   }
 }
 
