@@ -26,10 +26,12 @@ export class WorkspacecardComponent {
   @Output() requestResult: EventEmitter<string> = new EventEmitter<string>();
 
 
-  constructor(private httpService: HttpService, private keycloak: KeycloakService) {
+  constructor(private httpService: HttpService, protected keycloak: KeycloakService) {
   }
 
   ngOnInit(): void {
+    console.log("Workspace???", this.workspace);
+    console.log("MemberCount", this.workspace.memberCount);
   }
 
   protected requestAccess() {

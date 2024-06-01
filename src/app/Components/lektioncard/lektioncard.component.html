@@ -1,14 +1,15 @@
-<div class="cardcontainer">
-  <div class="card">
-    <i *ngIf="!add" (click)="removeLection()" class="bi bi-trash3 cardDelete"></i>
-    <i *ngIf="owner" [routerLink]="['/lection/', lection?.lectionId]" [queryParams]="{editMode:true}"class="bi bi-pencil cardEdit"></i>
-    <div class="content">
+<div class="card mt-3 mb-3">
+  <i *ngIf="!add" (click)="removeLection()" class="bi bi-trash3 cardDelete"></i>
+  <i *ngIf="owner" [routerLink]="['/lection/', lection?.lectionId]" [queryParams]="{editMode:true}"class="bi bi-pencil cardEdit"></i>
+  <div class="content d-flex flex-column justify-content-between">
+    <div class="card-description">
       <h2>{{lection?.topicType}}</h2>
       <h3>{{lection?.title}}</h3>
       <p>{{lection?.description}}</p>
 
-      <app-progress-chart *ngIf="!add" [percentage]="lectionPercentage" ></app-progress-chart>
-
+      <app-progress-chart *ngIf="!add" [percentage]="lectionPercentage"></app-progress-chart>
+    </div>
+    <div class="card-control">
       <a *ngIf="add" (click)="removeLection()" class="neon-button">
         Lektion hinzufügen
       </a>
@@ -16,7 +17,6 @@
       <a *ngIf="!add" [routerLink]="['/learning/lection/', lection?.lectionId]" class="neon-button">
         Lektion starten
       </a>
-
     </div>
   </div>
 </div>
