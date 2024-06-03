@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Workspace} from "../../Models/Workspace";
 
 import {AsyncPipe, NgForOf} from "@angular/common";
@@ -30,6 +30,7 @@ export class WorkspaceHeaderComponent {
   publicWorkspace: boolean = false;
   @Input() searchbarOnly  = false;
   newWorkspaceTitle: string = '';
+  @Output() workspaceCreated = new EventEmitter<Workspace>();
 
   constructor(private httpService: HttpService, private workspaceService: WorkspaceService) {
   }
@@ -113,21 +114,23 @@ export class WorkspaceHeaderComponent {
 
   createWorkspace(): void {
     if (this.newWorkspaceTitle.trim()) {
-      // Implement your workspace creation logic here, for example:
-      this.httpService.createWorkspace({ title: this.newWorkspaceTitle }).subscribe(response => {
-        console.log('Workspace created:', response);
-        // Refresh the workspaces list
-        alert("Workspace: " + response.title + "created successfully.");
-      }, error => {
-        console.error('Error creating workspace:', error);
-        alert("Error creating workspace:" + error);
-      });
-      // Clear the input field after creating the workspace
+      this.httpService.createWorkspace({title: this.newWorkspaceTitle})
+        .subscribe({
+          next: (response) => {
+            alert("Workspace: " + response.title + " created successfully.");
+            this.workspaceCreated.emit(response);
+          },
+          error: (error) => {
+            console.error('Error creating workspace:', error);
+            alert("Error creating workspace:" + error);
+          },
+          complete: () => {
+            console.log('Workspace creation process is complete.');
+          }
+        });
       this.newWorkspaceTitle = '';
     } else {
       alert('Please enter a title for the workspace.');
     }
   }
-
-
 }
